@@ -92,28 +92,28 @@
       </el-menu-item>
 
       <el-menu-item
-        :class="classFor('/ciclo-monte-ore')"
-        :route="{ path: '/ciclo-monte-ore' }"
-        index="/ciclo-monte-ore"
-        v-if="hasPermissionToCicloMonteOre || cicloMonteOreLocked"
-        :disabled="cicloMonteOreLocked"
+        :class="classFor('/anno-formazione-scuola-lavoro')"
+        :route="{ path: '/anno-formazione-scuola-lavoro' }"
+        index="/anno-formazione-scuola-lavoro"
+        v-if="hasPermissionToAnnoFormazioneScuolaLavoro || annoFormazioneScuolaLavoroLocked"
+        :disabled="annoFormazioneScuolaLavoroLocked"
       >
         <i class="el-icon-fa-chevron-right"></i>
         <span slot="title">
-          <app-i18n code="entities.cicloMonteOre.menu"></app-i18n>
+          <app-i18n code="entities.annoFormazioneScuolaLavoro.menu"></app-i18n>
         </span>
       </el-menu-item>
 
       <el-menu-item
-        :class="classFor('/corso')"
-        :route="{ path: '/corso' }"
-        index="/corso"
-        v-if="hasPermissionToCorso || corsoLocked"
-        :disabled="corsoLocked"
+        :class="classFor('/corso-formazione')"
+        :route="{ path: '/corso-formazione' }"
+        index="/corso-formazione"
+        v-if="hasPermissionToCorsoFormazione || corsoFormazioneLocked"
+        :disabled="corsoFormazioneLocked"
       >
         <i class="el-icon-fa-chevron-right"></i>
         <span slot="title">
-          <app-i18n code="entities.corso.menu"></app-i18n>
+          <app-i18n code="entities.corsoFormazione.menu"></app-i18n>
         </span>
       </el-menu-item>
     </el-menu>
@@ -126,8 +126,8 @@ import { SettingsPermissions } from '@/modules/settings/settings-permissions';
 import { AuditLogPermissions } from '@/modules/audit-log/audit-log-permissions';
 import { UserPermissions } from '@/modules/user/user-permissions';
 import { PlanPermissions } from '@/modules/plan/plan-permissions';
-import { CicloMonteOrePermissions } from '@/modules/ciclo-monte-ore/ciclo-monte-ore-permissions';
-import { CorsoPermissions } from '@/modules/corso/corso-permissions';
+import { AnnoFormazioneScuolaLavoroPermissions } from '@/modules/anno-formazione-scuola-lavoro/anno-formazione-scuola-lavoro-permissions';
+import { CorsoFormazionePermissions } from '@/modules/corso-formazione/corso-formazione-permissions';
 import config from '@/config';
 
 import Vue from 'vue';
@@ -174,11 +174,11 @@ export default Vue.extend({
       ).read;
     },
 
-    hasPermissionToCicloMonteOre() {
-      return new CicloMonteOrePermissions(this.currentTenant, this.currentUser).read;
+    hasPermissionToAnnoFormazioneScuolaLavoro() {
+      return new AnnoFormazioneScuolaLavoroPermissions(this.currentTenant, this.currentUser).read;
     },
-    hasPermissionToCorso() {
-      return new CorsoPermissions(this.currentTenant, this.currentUser).read;
+    hasPermissionToCorsoFormazione() {
+      return new CorsoFormazionePermissions(this.currentTenant, this.currentUser).read;
     },
 
     planLocked() {
@@ -212,11 +212,11 @@ export default Vue.extend({
       ).lockedForCurrentPlan;
     },
 
-    cicloMonteOreLocked() {
-      return new CicloMonteOrePermissions(this.currentTenant, this.currentUser).lockedForCurrentPlan;
+    annoFormazioneScuolaLavoroLocked() {
+      return new AnnoFormazioneScuolaLavoroPermissions(this.currentTenant, this.currentUser).lockedForCurrentPlan;
     },
-    corsoLocked() {
-      return new CorsoPermissions(this.currentTenant, this.currentUser).lockedForCurrentPlan;
+    corsoFormazioneLocked() {
+      return new CorsoFormazionePermissions(this.currentTenant, this.currentUser).lockedForCurrentPlan;
     },
 
     asideWidth() {

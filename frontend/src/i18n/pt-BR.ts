@@ -31,41 +31,43 @@ const ptBR = {
   },
 
   entities: {
-    cicloMonteOre: {
-        name: 'CicloMonteOre',
-        label: 'CicliMonteOre',
-        menu: 'CicliMonteOre',
-        exporterFileName: 'CicloMonteOre_exportados',
+    annoFormazioneScuolaLavoro: {
+        name: 'AnnoFormazioneScuolaLavoro',
+        label: 'AnniFormazioneScuolaLavoros',
+        menu: 'AnniFormazioneScuolaLavoros',
+        exporterFileName: 'AnnoFormazioneScuolaLavoro_exportados',
         list: {
-          menu: 'CicliMonteOre',
-          title: 'CicliMonteOre',
+          menu: 'AnniFormazioneScuolaLavoros',
+          title: 'AnniFormazioneScuolaLavoros',
         },
         create: {
-          success: 'CicloMonteOre salvo com sucesso',
+          success: 'AnnoFormazioneScuolaLavoro salvo com sucesso',
         },
         update: {
-          success: 'CicloMonteOre salvo com sucesso',
+          success: 'AnnoFormazioneScuolaLavoro salvo com sucesso',
         },
         destroy: {
-          success: 'CicloMonteOre deletado com sucesso',
+          success: 'AnnoFormazioneScuolaLavoro deletado com sucesso',
         },
         destroyAll: {
-          success: 'CicloMonteOre(s) deletado com sucesso',
+          success: 'AnnoFormazioneScuolaLavoro(s) deletado com sucesso',
         },
         edit: {
-          title: 'Editar CicloMonteOre',
+          title: 'Editar AnnoFormazioneScuolaLavoro',
         },
         fields: {
           id: 'Id',
-          'nomeCiclo': 'NomeCiclo',
+          'nomeAnno': 'NomeAnno',
           'inizioCicloRange': 'InizioCiclo',
           'inizioCiclo': 'InizioCiclo',
           'fineCicloRange': 'FineCiclo',
           'fineCiclo': 'FineCiclo',
           'attivo': 'Attivo',
-          'amministratoreMonteOre': 'AmministratoreMonteOre',
-          'studenti': 'Studenti',
-          'corsi': 'Corsi',
+          'amministratoriCorsiFormazione': 'AmministratoriCorsiFormazione',
+          'studentiImmatricolati': 'StudentiImmatricolati',
+          'corsiDisponibili': 'CorsiDisponibili',
+          'numeroAnnoRange': 'NumeroAnno',
+          'numeroAnno': 'NumeroAnno',
           createdAt: 'Criado em',
           updatedAt: 'Atualizado em',
           createdAtRange: 'Criado em',
@@ -80,42 +82,42 @@ const ptBR = {
 
         },
         new: {
-          title: 'Novo CicloMonteOre',
+          title: 'Novo AnnoFormazioneScuolaLavoro',
         },
         view: {
-          title: 'Visualizar CicloMonteOre',
+          title: 'Visualizar AnnoFormazioneScuolaLavoro',
         },
         importer: {
-          title: 'Importar CicliMonteOre',
-          fileName: 'cicloMonteOre_template_importacao',
+          title: 'Importar AnniFormazioneScuolaLavoros',
+          fileName: 'annoFormazioneScuolaLavoro_template_importacao',
           hint:
             'Arquivos/Imagens devem ser as URLs dos arquivos, separados por espaço. Relacionamentos devem ser os IDs separados por espaço.',
         },
       },
 
-    corso: {
-        name: 'Corso',
-        label: 'Corsi',
-        menu: 'Corsi',
-        exporterFileName: 'Corso_exportados',
+    corsoFormazione: {
+        name: 'CorsoFormazione',
+        label: 'CorsiFormaziones',
+        menu: 'CorsiFormaziones',
+        exporterFileName: 'CorsoFormazione_exportados',
         list: {
-          menu: 'Corsi',
-          title: 'Corsi',
+          menu: 'CorsiFormaziones',
+          title: 'CorsiFormaziones',
         },
         create: {
-          success: 'Corso salvo com sucesso',
+          success: 'CorsoFormazione salvo com sucesso',
         },
         update: {
-          success: 'Corso salvo com sucesso',
+          success: 'CorsoFormazione salvo com sucesso',
         },
         destroy: {
-          success: 'Corso deletado com sucesso',
+          success: 'CorsoFormazione deletado com sucesso',
         },
         destroyAll: {
-          success: 'Corso(s) deletado com sucesso',
+          success: 'CorsoFormazione(s) deletado com sucesso',
         },
         edit: {
-          title: 'Editar Corso',
+          title: 'Editar CorsoFormazione',
         },
         fields: {
           id: 'Id',
@@ -125,7 +127,6 @@ const ptBR = {
           'attivo': 'Attivo',
           'logo': 'Logo',
           'studentiIscritti': 'StudentiIscritti',
-          'studentiAmmessi': 'StudentiAmmessi',
           createdAt: 'Criado em',
           updatedAt: 'Atualizado em',
           createdAtRange: 'Criado em',
@@ -140,14 +141,14 @@ const ptBR = {
 
         },
         new: {
-          title: 'Novo Corso',
+          title: 'Novo CorsoFormazione',
         },
         view: {
-          title: 'Visualizar Corso',
+          title: 'Visualizar CorsoFormazione',
         },
         importer: {
-          title: 'Importar Corsi',
-          fileName: 'corso_template_importacao',
+          title: 'Importar CorsiFormaziones',
+          fileName: 'corsoFormazione_template_importacao',
           hint:
             'Arquivos/Imagens devem ser as URLs dos arquivos, separados por espaço. Relacionamentos devem ser os IDs separados por espaço.',
         },

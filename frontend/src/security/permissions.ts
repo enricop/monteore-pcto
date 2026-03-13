@@ -121,82 +121,82 @@ class Permissions {
           storage.settingsLogos,
         ],
       },
-      cicloMonteOreImport: {
-        id: 'cicloMonteOreImport',
+      annoFormazioneScuolaLavoroImport: {
+        id: 'annoFormazioneScuolaLavoroImport',
         allowedRoles: [roles.admin],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
-      cicloMonteOreCreate: {
-        id: 'cicloMonteOreCreate',
-        allowedRoles: [roles.admin],
-        allowedPlans: [plans.free, plans.growth, plans.enterprise],
-        allowedStorage: [
-
-        ],
-      },
-      cicloMonteOreEdit: {
-        id: 'cicloMonteOreEdit',
+      annoFormazioneScuolaLavoroCreate: {
+        id: 'annoFormazioneScuolaLavoroCreate',
         allowedRoles: [roles.admin],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
 
         ],
       },
-      cicloMonteOreDestroy: {
-        id: 'cicloMonteOreDestroy',
+      annoFormazioneScuolaLavoroEdit: {
+        id: 'annoFormazioneScuolaLavoroEdit',
         allowedRoles: [roles.admin],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
 
         ],
       },
-      cicloMonteOreRead: {
-        id: 'cicloMonteOreRead',
+      annoFormazioneScuolaLavoroDestroy: {
+        id: 'annoFormazioneScuolaLavoroDestroy',
+        allowedRoles: [roles.admin],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+        allowedStorage: [
+
+        ],
+      },
+      annoFormazioneScuolaLavoroRead: {
+        id: 'annoFormazioneScuolaLavoroRead',
         allowedRoles: [roles.admin, roles.custom],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
-      cicloMonteOreAutocomplete: {
-        id: 'cicloMonteOreAutocomplete',
+      annoFormazioneScuolaLavoroAutocomplete: {
+        id: 'annoFormazioneScuolaLavoroAutocomplete',
         allowedRoles: [roles.admin, roles.custom],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
 
-      corsoImport: {
-        id: 'corsoImport',
+      corsoFormazioneImport: {
+        id: 'corsoFormazioneImport',
         allowedRoles: [roles.admin],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
-      corsoCreate: {
-        id: 'corsoCreate',
-        allowedRoles: [roles.admin],
-        allowedPlans: [plans.free, plans.growth, plans.enterprise],
-        allowedStorage: [
-          storage.corsoLogo,
-        ],
-      },
-      corsoEdit: {
-        id: 'corsoEdit',
+      corsoFormazioneCreate: {
+        id: 'corsoFormazioneCreate',
         allowedRoles: [roles.admin],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
-          storage.corsoLogo,
+          storage.corsoFormazioneLogo,
         ],
       },
-      corsoDestroy: {
-        id: 'corsoDestroy',
+      corsoFormazioneEdit: {
+        id: 'corsoFormazioneEdit',
         allowedRoles: [roles.admin],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
-          storage.corsoLogo,
+          storage.corsoFormazioneLogo,
         ],
       },
-      corsoRead: {
-        id: 'corsoRead',
+      corsoFormazioneDestroy: {
+        id: 'corsoFormazioneDestroy',
+        allowedRoles: [roles.admin],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+        allowedStorage: [
+          storage.corsoFormazioneLogo,
+        ],
+      },
+      corsoFormazioneRead: {
+        id: 'corsoFormazioneRead',
         allowedRoles: [roles.admin, roles.custom],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
-      corsoAutocomplete: {
-        id: 'corsoAutocomplete',
+      corsoFormazioneAutocomplete: {
+        id: 'corsoFormazioneAutocomplete',
         allowedRoles: [roles.admin, roles.custom],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },

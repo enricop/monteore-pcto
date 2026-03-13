@@ -25,7 +25,7 @@ const tenantMode = 'single';
 /**
  * Plan payments configuration.
  */
-const isPlanEnabled = true;
+const isPlanEnabled = false;
 const stripePublishableKey = '';
 
 export default {

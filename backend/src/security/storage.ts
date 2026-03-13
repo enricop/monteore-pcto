@@ -32,9 +32,9 @@ export default class Storage {
       },
 
 
-      corsoLogo: {
-        id: 'corsoLogo',
-        folder: 'tenant/:tenantId/corso/logo',
+      corsoFormazioneLogo: {
+        id: 'corsoFormazioneLogo',
+        folder: 'tenant/:tenantId/corsoFormazione/logo',
         maxSizeInBytes: 100 * 1024 * 1024,
       },
     };

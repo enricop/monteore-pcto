@@ -11,8 +11,8 @@ import plan from '@/modules/plan/plan-module';
 import user from '@/modules/user/user-module';
 import settings from '@/modules/settings/settings-module';
 import auditLog from '@/modules/audit-log/audit-log-module';
-import cicloMonteOre from '@/modules/ciclo-monte-ore/ciclo-monte-ore-module';
-import corso from '@/modules/corso/corso-module';
+import annoFormazioneScuolaLavoro from '@/modules/anno-formazione-scuola-lavoro/anno-formazione-scuola-lavoro-module';
+import corsoFormazione from '@/modules/corso-formazione/corso-formazione-module';
 
 const modules = {
   shared,
@@ -24,8 +24,8 @@ const modules = {
   user,
   auditLog,
   layout,
-  cicloMonteOre,
-  corso,  
+  annoFormazioneScuolaLavoro,
+  corsoFormazione,  
 };
 
 // start - boilerplate code
