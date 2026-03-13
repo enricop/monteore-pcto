@@ -88,17 +88,17 @@ const en = {
   },
 
   entities: {
-    cicloMonteOre: {
+    annoFormazioneScuolaLavoro: {
       errors: {
         unique: {
-          nomeCiclo: 'NomeCiclo must be unique',
+
         }
       }
     },
-    corso: {
+    corsoFormazione: {
       errors: {
         unique: {
-          nome: 'Nome must be unique',
+
         }
       }
     },

@@ -90,17 +90,17 @@ const es = {
   },
 
   entities: {
-    cicloMonteOre: {
+    annoFormazioneScuolaLavoro: {
       errors: {
         unique: {
-          nomeCiclo: 'NomeCiclo debe ser único',
+
         }
       }
     },
-    corso: {
+    corsoFormazione: {
       errors: {
         unique: {
-          nome: 'Nome debe ser único',
+
         }
       }
     },

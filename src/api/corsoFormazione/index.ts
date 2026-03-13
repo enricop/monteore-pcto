@@ -1,0 +1,30 @@
+export default (app) => {
+  app.post(
+    `/tenant/:tenantId/corso-formazione`,
+    require('./corsoFormazioneCreate').default,
+  );
+  app.put(
+    `/tenant/:tenantId/corso-formazione/:id`,
+    require('./corsoFormazioneUpdate').default,
+  );
+  app.post(
+    `/tenant/:tenantId/corso-formazione/import`,
+    require('./corsoFormazioneImport').default,
+  );
+  app.delete(
+    `/tenant/:tenantId/corso-formazione`,
+    require('./corsoFormazioneDestroy').default,
+  );
+  app.get(
+    `/tenant/:tenantId/corso-formazione/autocomplete`,
+    require('./corsoFormazioneAutocomplete').default,
+  );
+  app.get(
+    `/tenant/:tenantId/corso-formazione`,
+    require('./corsoFormazioneList').default,
+  );
+  app.get(
+    `/tenant/:tenantId/corso-formazione/:id`,
+    require('./corsoFormazioneFind').default,
+  );
+};

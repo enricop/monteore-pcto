@@ -86,17 +86,17 @@ const ptBR = {
   },
 
   entities: {
-    cicloMonteOre: {
+    annoFormazioneScuolaLavoro: {
       errors: {
         unique: {
-          nomeCiclo: 'NomeCiclo deve ser único',
+
         }
       }
     },
-    corso: {
+    corsoFormazione: {
       errors: {
         unique: {
-          nome: 'Nome deve ser único',
+
         }
       }
     },
