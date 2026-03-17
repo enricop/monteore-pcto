@@ -47,7 +47,7 @@ class Permissions {
       },
       userEdit: {
         id: 'userEdit',
-        allowedRoles: [roles.admin],
+        allowedRoles: [roles.admin, roles.amministrazione],
         allowedPlans: [
           plans.free,
           plans.growth,
@@ -56,7 +56,7 @@ class Permissions {
       },
       userDestroy: {
         id: 'userDestroy',
-        allowedRoles: [roles.admin],
+        allowedRoles: [roles.admin, roles.amministrazione],
         allowedPlans: [
           plans.free,
           plans.growth,
@@ -65,7 +65,7 @@ class Permissions {
       },
       userCreate: {
         id: 'userCreate',
-        allowedRoles: [roles.admin],
+        allowedRoles: [roles.admin, roles.amministrazione],
         allowedPlans: [
           plans.free,
           plans.growth,
@@ -74,7 +74,7 @@ class Permissions {
       },
       userImport: {
         id: 'userImport',
-        allowedRoles: [roles.admin],
+        allowedRoles: [roles.admin, roles.amministrazione],
         allowedPlans: [
           plans.free,
           plans.growth,
@@ -83,7 +83,7 @@ class Permissions {
       },
       userRead: {
         id: 'userRead',
-        allowedRoles: [roles.admin],
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente],
         allowedPlans: [
           plans.free,
           plans.growth,
@@ -92,7 +92,7 @@ class Permissions {
       },
       userAutocomplete: {
         id: 'userAutocomplete',
-        allowedRoles: [roles.admin, roles.custom],
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente],
         allowedPlans: [
           plans.free,
           plans.growth,
@@ -101,7 +101,7 @@ class Permissions {
       },
       auditLogRead: {
         id: 'auditLogRead',
-        allowedRoles: [roles.admin],
+        allowedRoles: [roles.admin, roles.amministrazione],
         allowedPlans: [
           plans.free,
           plans.growth,
@@ -123,12 +123,12 @@ class Permissions {
       },
       annoFormazioneScuolaLavoroImport: {
         id: 'annoFormazioneScuolaLavoroImport',
-        allowedRoles: [roles.admin],
+        allowedRoles: [roles.admin, roles.amministrazione],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
       annoFormazioneScuolaLavoroCreate: {
         id: 'annoFormazioneScuolaLavoroCreate',
-        allowedRoles: [roles.admin],
+        allowedRoles: [roles.admin, roles.amministrazione],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
 
@@ -136,7 +136,7 @@ class Permissions {
       },
       annoFormazioneScuolaLavoroEdit: {
         id: 'annoFormazioneScuolaLavoroEdit',
-        allowedRoles: [roles.admin],
+        allowedRoles: [roles.admin, roles.amministrazione],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
 
@@ -144,7 +144,7 @@ class Permissions {
       },
       annoFormazioneScuolaLavoroDestroy: {
         id: 'annoFormazioneScuolaLavoroDestroy',
-        allowedRoles: [roles.admin],
+        allowedRoles: [roles.admin, roles.amministrazione],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
 
@@ -152,23 +152,23 @@ class Permissions {
       },
       annoFormazioneScuolaLavoroRead: {
         id: 'annoFormazioneScuolaLavoroRead',
-        allowedRoles: [roles.admin, roles.custom],
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
       annoFormazioneScuolaLavoroAutocomplete: {
         id: 'annoFormazioneScuolaLavoroAutocomplete',
-        allowedRoles: [roles.admin, roles.custom],
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
 
       corsoFormazioneImport: {
         id: 'corsoFormazioneImport',
-        allowedRoles: [roles.admin],
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente,],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
       corsoFormazioneCreate: {
         id: 'corsoFormazioneCreate',
-        allowedRoles: [roles.admin],
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente,],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
           storage.corsoFormazioneLogo,
@@ -176,7 +176,7 @@ class Permissions {
       },
       corsoFormazioneEdit: {
         id: 'corsoFormazioneEdit',
-        allowedRoles: [roles.admin],
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente,],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
           storage.corsoFormazioneLogo,
@@ -184,7 +184,7 @@ class Permissions {
       },
       corsoFormazioneDestroy: {
         id: 'corsoFormazioneDestroy',
-        allowedRoles: [roles.admin],
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente,],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
           storage.corsoFormazioneLogo,
@@ -192,12 +192,12 @@ class Permissions {
       },
       corsoFormazioneRead: {
         id: 'corsoFormazioneRead',
-        allowedRoles: [roles.admin, roles.custom],
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
       corsoFormazioneAutocomplete: {
         id: 'corsoFormazioneAutocomplete',
-        allowedRoles: [roles.admin, roles.custom],
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },      
     };
