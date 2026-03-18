@@ -89,14 +89,14 @@ const ptBR = {
     annoFormazioneScuolaLavoro: {
       errors: {
         unique: {
-
+          numeroAnno: 'NumeroAnno deve ser único',
         }
       }
     },
     corsoFormazione: {
       errors: {
         unique: {
-
+          nome: 'Nome deve ser único',
         }
       }
     },

@@ -31,7 +31,7 @@ class CorsoFormazioneRepository {
           'attivo',          
           'importHash',
         ]),
-
+        annoFormazioneId: data.annoFormazione || null,
         tenantId: tenant.id,
         createdById: currentUser.id,
         updatedById: currentUser.id,
@@ -41,9 +41,7 @@ class CorsoFormazioneRepository {
       },
     );
 
-    await record.setIscrizioni(data.iscrizioni || [], {
-      transaction,
-    });    
+    
   
     await FileRepository.replaceRelationFiles(
       {
@@ -101,7 +99,7 @@ class CorsoFormazioneRepository {
           'attivo',          
           'importHash',
         ]),
-
+        annoFormazioneId: data.annoFormazione || null,
         updatedById: currentUser.id,
       },
       {
@@ -109,9 +107,7 @@ class CorsoFormazioneRepository {
       },
     );
 
-    await record.setIscrizioni(data.iscrizioni || [], {
-      transaction,
-    });
+
 
     await FileRepository.replaceRelationFiles(
       {
@@ -174,7 +170,10 @@ class CorsoFormazioneRepository {
     );
 
     const include = [
-
+      {
+        model: options.database.annoFormazioneScuolaLavoro,
+        as: 'annoFormazione',
+      },
     ];
 
     const currentTenant = SequelizeRepository.getCurrentTenant(
@@ -268,7 +267,10 @@ class CorsoFormazioneRepository {
 
     let whereAnd: Array<any> = [];
     let include = [
-      
+      {
+        model: options.database.annoFormazioneScuolaLavoro,
+        as: 'annoFormazione',
+      },      
     ];
 
     whereAnd.push({
@@ -322,6 +324,14 @@ class CorsoFormazioneRepository {
           attivo:
             filter.attivo === true ||
             filter.attivo === 'true',
+        });
+      }
+
+      if (filter.annoFormazione) {
+        whereAnd.push({
+          ['annoFormazioneId']: SequelizeFilterUtils.uuid(
+            filter.annoFormazione,
+          ),
         });
       }
 
@@ -433,7 +443,6 @@ class CorsoFormazioneRepository {
       values = {
         ...record.get({ plain: true }),
         logo: data.logo,
-        iscrizioniIds: data.iscrizioni,
       };
     }
 
@@ -479,10 +488,6 @@ class CorsoFormazioneRepository {
         transaction,
       }),
     );
-
-    output.iscrizioni = await record.getIscrizioni({
-      transaction,
-    });
 
     return output;
   }

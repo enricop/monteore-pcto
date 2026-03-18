@@ -45,11 +45,17 @@ export default function (sequelize) {
     models.iscrizioneCorso.belongsTo(models.user, {
       as: 'studenteIscritto',
       constraints: false,
+      foreignKey: {
+        allowNull: false,
+      },
     });
 
     models.iscrizioneCorso.belongsTo(models.corsoFormazione, {
       as: 'corsoIscrizione',
       constraints: false,
+      foreignKey: {
+        allowNull: false,
+      },
     });
 
 

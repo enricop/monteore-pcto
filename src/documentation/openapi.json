@@ -998,6 +998,14 @@
             "schema": {
               "type": "boolean"
             }
+          },
+          {
+            "in": "query",
+            "name": "filter[annoFormazione]",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
           },      
           {
             "in": "query",
@@ -3149,12 +3157,6 @@
             "items": {
               "$ref": "#/components/schemas/UserRelated"
             }
-          },
-          "corsiDisponibili": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CorsoFormazione"
-            }
           }    
         }
       },
@@ -3191,13 +3193,6 @@
               "type": "string",
               "format": "uuid"
             }
-          },
-          "corsiDisponibili": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            }
           }    
         }
       },
@@ -3224,11 +3219,8 @@
               "$ref": "#/components/schemas/File"
             }
           },
-          "iscrizioni": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IscrizioneCorso"
-            }
+          "annoFormazione": {
+            "$ref": "#/components/schemas/AnnoFormazioneScuolaLavoro"
           }    
         }
       },
@@ -3250,12 +3242,9 @@
               "$ref": "#/components/schemas/FileInput"
             }
           },
-          "iscrizioni": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            }
+          "annoFormazione": {
+            "type": "string",
+            "format": "uuid"
           }    
         }
       },

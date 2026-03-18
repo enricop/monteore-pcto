@@ -2,7 +2,6 @@ import Error400 from '../errors/Error400';
 import SequelizeRepository from '../database/repositories/sequelizeRepository';
 import { IServiceOptions } from './IServiceOptions';
 import AnnoFormazioneScuolaLavoroRepository from '../database/repositories/annoFormazioneScuolaLavoroRepository';
-import CorsoFormazioneRepository from '../database/repositories/corsoFormazioneRepository';
 import UserRepository from '../database/repositories/userRepository';
 
 export default class AnnoFormazioneScuolaLavoroService {
@@ -20,7 +19,6 @@ export default class AnnoFormazioneScuolaLavoroService {
     try {
       data.amministratoriCorsiFormazione = await UserRepository.filterIdsInTenant(data.amministratoriCorsiFormazione, { ...this.options, transaction });
       data.studentiImmatricolati = await UserRepository.filterIdsInTenant(data.studentiImmatricolati, { ...this.options, transaction });
-      data.corsiDisponibili = await CorsoFormazioneRepository.filterIdsInTenant(data.corsiDisponibili, { ...this.options, transaction });
 
       const record = await AnnoFormazioneScuolaLavoroRepository.create(data, {
         ...this.options,
@@ -55,7 +53,6 @@ export default class AnnoFormazioneScuolaLavoroService {
     try {
       data.amministratoriCorsiFormazione = await UserRepository.filterIdsInTenant(data.amministratoriCorsiFormazione, { ...this.options, transaction });
       data.studentiImmatricolati = await UserRepository.filterIdsInTenant(data.studentiImmatricolati, { ...this.options, transaction });
-      data.corsiDisponibili = await CorsoFormazioneRepository.filterIdsInTenant(data.corsiDisponibili, { ...this.options, transaction });
 
       const record = await AnnoFormazioneScuolaLavoroRepository.update(
         id,

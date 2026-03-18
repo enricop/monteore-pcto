@@ -91,14 +91,14 @@ const en = {
     annoFormazioneScuolaLavoro: {
       errors: {
         unique: {
-
+          numeroAnno: 'NumeroAnno must be unique',
         }
       }
     },
     corsoFormazione: {
       errors: {
         unique: {
-
+          nome: 'Nome must be unique',
         }
       }
     },

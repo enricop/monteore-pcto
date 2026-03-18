@@ -11,6 +11,10 @@ export default function (sequelize) {
       },
       numeroAnno: {
         type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+
+        }
       },
       nomeAnno: {
         type: DataTypes.TEXT,
@@ -61,7 +65,13 @@ export default function (sequelize) {
             deletedAt: null,
           },
         },
-
+        {
+          unique: true,
+          fields: ['numeroAnno', 'tenantId'],
+          where: {
+            deletedAt: null,
+          },
+        },
       ],
       timestamps: true,
       paranoid: true,
@@ -79,12 +89,6 @@ export default function (sequelize) {
       as: 'studentiImmatricolati',
       constraints: false,
       through: 'annoFormazioneScuolaLavoroStudentiImmatricolatiUser',
-    });
-
-    models.annoFormazioneScuolaLavoro.belongsToMany(models.corsoFormazione, {
-      as: 'corsiDisponibili',
-      constraints: false,
-      through: 'annoFormazioneScuolaLavoroCorsiDisponibiliCorsoFormazione',
     });
 
 

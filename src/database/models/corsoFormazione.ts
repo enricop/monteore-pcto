@@ -11,9 +11,17 @@ export default function (sequelize) {
       },
       nome: {
         type: DataTypes.TEXT,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        }
       },
       massimoNumeroIscritti: {
         type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          min: 1,
+        }
       },
       attivo: {
         type: DataTypes.BOOLEAN,
@@ -37,7 +45,13 @@ export default function (sequelize) {
             deletedAt: null,
           },
         },
-
+        {
+          unique: true,
+          fields: ['nome', 'tenantId'],
+          where: {
+            deletedAt: null,
+          },
+        },
       ],
       timestamps: true,
       paranoid: true,
@@ -45,10 +59,12 @@ export default function (sequelize) {
   );
 
   corsoFormazione.associate = (models) => {
-    models.corsoFormazione.belongsToMany(models.iscrizioneCorso, {
-      as: 'iscrizioni',
+    models.corsoFormazione.belongsTo(models.annoFormazioneScuolaLavoro, {
+      as: 'annoFormazione',
       constraints: false,
-      through: 'corsoFormazioneIscrizioniIscrizioneCorso',
+      foreignKey: {
+        allowNull: false,
+      },
     });
 
     models.corsoFormazione.hasMany(models.file, {

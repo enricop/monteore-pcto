@@ -48,9 +48,6 @@ class AnnoFormazioneScuolaLavoroRepository {
     });
     await record.setStudentiImmatricolati(data.studentiImmatricolati || [], {
       transaction,
-    });
-    await record.setCorsiDisponibili(data.corsiDisponibili || [], {
-      transaction,
     });    
   
 
@@ -115,9 +112,6 @@ class AnnoFormazioneScuolaLavoroRepository {
       transaction,
     });
     await record.setStudentiImmatricolati(data.studentiImmatricolati || [], {
-      transaction,
-    });
-    await record.setCorsiDisponibili(data.corsiDisponibili || [], {
       transaction,
     });
 
@@ -468,7 +462,6 @@ class AnnoFormazioneScuolaLavoroRepository {
         ...record.get({ plain: true }),
         amministratoriCorsiFormazioneIds: data.amministratoriCorsiFormazione,
         studentiImmatricolatiIds: data.studentiImmatricolati,
-        corsiDisponibiliIds: data.corsiDisponibili,
       };
     }
 
@@ -520,10 +513,6 @@ class AnnoFormazioneScuolaLavoroRepository {
     });
 
     output.studentiImmatricolati = UserRepository.cleanupForRelationships(output.studentiImmatricolati);
-
-    output.corsiDisponibili = await record.getCorsiDisponibili({
-      transaction,
-    });
 
     return output;
   }
