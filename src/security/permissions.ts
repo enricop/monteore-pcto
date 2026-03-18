@@ -144,7 +144,7 @@ class Permissions {
       },
       annoFormazioneScuolaLavoroDestroy: {
         id: 'annoFormazioneScuolaLavoroDestroy',
-        allowedRoles: [roles.admin, roles.amministrazione],
+        allowedRoles: [roles.admin],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
 
@@ -163,12 +163,12 @@ class Permissions {
 
       corsoFormazioneImport: {
         id: 'corsoFormazioneImport',
-        allowedRoles: [roles.admin, roles.amministrazione, roles.docente,],
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
       corsoFormazioneCreate: {
         id: 'corsoFormazioneCreate',
-        allowedRoles: [roles.admin, roles.amministrazione, roles.docente,],
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
           storage.corsoFormazioneLogo,
@@ -176,7 +176,7 @@ class Permissions {
       },
       corsoFormazioneEdit: {
         id: 'corsoFormazioneEdit',
-        allowedRoles: [roles.admin, roles.amministrazione, roles.docente,],
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
           storage.corsoFormazioneLogo,
@@ -184,7 +184,7 @@ class Permissions {
       },
       corsoFormazioneDestroy: {
         id: 'corsoFormazioneDestroy',
-        allowedRoles: [roles.admin, roles.amministrazione, roles.docente,],
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
           storage.corsoFormazioneLogo,
@@ -197,6 +197,46 @@ class Permissions {
       },
       corsoFormazioneAutocomplete: {
         id: 'corsoFormazioneAutocomplete',
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+      },
+
+      iscrizioneCorsoImport: {
+        id: 'iscrizioneCorsoImport',
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+      },
+      iscrizioneCorsoCreate: {
+        id: 'iscrizioneCorsoCreate',
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+        allowedStorage: [
+
+        ],
+      },
+      iscrizioneCorsoEdit: {
+        id: 'iscrizioneCorsoEdit',
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+        allowedStorage: [
+
+        ],
+      },
+      iscrizioneCorsoDestroy: {
+        id: 'iscrizioneCorsoDestroy',
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+        allowedStorage: [
+
+        ],
+      },
+      iscrizioneCorsoRead: {
+        id: 'iscrizioneCorsoRead',
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+      },
+      iscrizioneCorsoAutocomplete: {
+        id: 'iscrizioneCorsoAutocomplete',
         allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },      

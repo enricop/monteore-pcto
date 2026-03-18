@@ -100,6 +100,13 @@ const ptBR = {
         }
       }
     },
+    iscrizioneCorso: {
+      errors: {
+        unique: {
+
+        }
+      }
+    },
   }
 };
 

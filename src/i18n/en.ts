@@ -102,6 +102,13 @@ const en = {
         }
       }
     },
+    iscrizioneCorso: {
+      errors: {
+        unique: {
+
+        }
+      }
+    },
   }
 };
 

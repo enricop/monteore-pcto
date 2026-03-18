@@ -1,10 +1,11 @@
 import Error400 from '../errors/Error400';
 import SequelizeRepository from '../database/repositories/sequelizeRepository';
 import { IServiceOptions } from './IServiceOptions';
-import CorsoFormazioneRepository from '../database/repositories/corsoFormazioneRepository';
 import IscrizioneCorsoRepository from '../database/repositories/iscrizioneCorsoRepository';
+import CorsoFormazioneRepository from '../database/repositories/corsoFormazioneRepository';
+import UserRepository from '../database/repositories/userRepository';
 
-export default class CorsoFormazioneService {
+export default class IscrizioneCorsoService {
   options: IServiceOptions;
 
   constructor(options) {
@@ -17,9 +18,10 @@ export default class CorsoFormazioneService {
     );
 
     try {
-      data.iscrizioni = await IscrizioneCorsoRepository.filterIdsInTenant(data.iscrizioni, { ...this.options, transaction });
+      data.studenteIscritto = await UserRepository.filterIdInTenant(data.studenteIscritto, { ...this.options, transaction });
+      data.corsoIscrizione = await CorsoFormazioneRepository.filterIdInTenant(data.corsoIscrizione, { ...this.options, transaction });
 
-      const record = await CorsoFormazioneRepository.create(data, {
+      const record = await IscrizioneCorsoRepository.create(data, {
         ...this.options,
         transaction,
       });
@@ -37,7 +39,7 @@ export default class CorsoFormazioneService {
       SequelizeRepository.handleUniqueFieldError(
         error,
         this.options.language,
-        'corsoFormazione',
+        'iscrizioneCorso',
       );
 
       throw error;
@@ -50,9 +52,10 @@ export default class CorsoFormazioneService {
     );
 
     try {
-      data.iscrizioni = await IscrizioneCorsoRepository.filterIdsInTenant(data.iscrizioni, { ...this.options, transaction });
+      data.studenteIscritto = await UserRepository.filterIdInTenant(data.studenteIscritto, { ...this.options, transaction });
+      data.corsoIscrizione = await CorsoFormazioneRepository.filterIdInTenant(data.corsoIscrizione, { ...this.options, transaction });
 
-      const record = await CorsoFormazioneRepository.update(
+      const record = await IscrizioneCorsoRepository.update(
         id,
         data,
         {
@@ -74,7 +77,7 @@ export default class CorsoFormazioneService {
       SequelizeRepository.handleUniqueFieldError(
         error,
         this.options.language,
-        'corsoFormazione',
+        'iscrizioneCorso',
       );
 
       throw error;
@@ -88,7 +91,7 @@ export default class CorsoFormazioneService {
 
     try {
       for (const id of ids) {
-        await CorsoFormazioneRepository.destroy(id, {
+        await IscrizioneCorsoRepository.destroy(id, {
           ...this.options,
           transaction,
         });
@@ -106,11 +109,11 @@ export default class CorsoFormazioneService {
   }
 
   async findById(id) {
-    return CorsoFormazioneRepository.findById(id, this.options);
+    return IscrizioneCorsoRepository.findById(id, this.options);
   }
 
   async findAllAutocomplete(search, limit) {
-    return CorsoFormazioneRepository.findAllAutocomplete(
+    return IscrizioneCorsoRepository.findAllAutocomplete(
       search,
       limit,
       this.options,
@@ -118,7 +121,7 @@ export default class CorsoFormazioneService {
   }
 
   async findAndCountAll(args) {
-    return CorsoFormazioneRepository.findAndCountAll(
+    return IscrizioneCorsoRepository.findAndCountAll(
       args,
       this.options,
     );
@@ -148,7 +151,7 @@ export default class CorsoFormazioneService {
   }
 
   async _isImportHashExistent(importHash) {
-    const count = await CorsoFormazioneRepository.count(
+    const count = await IscrizioneCorsoRepository.count(
       {
         importHash,
       },

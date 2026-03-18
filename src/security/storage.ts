@@ -37,6 +37,8 @@ export default class Storage {
         folder: 'tenant/:tenantId/corsoFormazione/logo',
         maxSizeInBytes: 100 * 1024 * 1024,
       },
+
+
     };
   }
 }

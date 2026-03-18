@@ -382,14 +382,14 @@
         }
       }
     },
-    "/tenant/{tenantId}/ciclo-monte-ore/{id}": {
+    "/tenant/{tenantId}/anno-formazione-scuola-lavoro/{id}": {
       "get": {
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "tags": ["CicloMonteOre"],
+        "tags": ["Anno Formazione Scuola Lavoro"],
         "parameters": [
           {
             "in": "path",
@@ -414,7 +414,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CicloMonteOre"
+                  "$ref": "#/components/schemas/AnnoFormazioneScuolaLavoro"
                 }
               }
             }
@@ -433,7 +433,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["CicloMonteOre"],
+        "tags": ["Anno Formazione Scuola Lavoro"],
         "parameters": [
           {
             "in": "path",
@@ -461,7 +461,7 @@
                 "required": ["data"],
                 "properties": {
                   "data": {
-                    "$ref": "#/components/schemas/CicloMonteOreInput"                
+                    "$ref": "#/components/schemas/AnnoFormazioneScuolaLavoroInput"                
                   }
                 }
               }
@@ -474,7 +474,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CicloMonteOre"
+                  "$ref": "#/components/schemas/AnnoFormazioneScuolaLavoro"
                 }
               }
             }
@@ -488,14 +488,14 @@
         }
       }
     },
-    "/tenant/{tenantId}/ciclo-monte-ore": {
+    "/tenant/{tenantId}/anno-formazione-scuola-lavoro": {
       "get": {
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "tags": ["CicloMonteOre"],
+        "tags": ["Anno Formazione Scuola Lavoro"],
         "parameters": [
           {
             "in": "path",
@@ -514,7 +514,17 @@
           },
           {
             "in": "query",
-            "name": "filter[nomeCiclo]",
+            "name": "filter[numeroAnnoRange][]",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[nomeAnno]",
             "schema": {
               "type": "string"
             }
@@ -546,14 +556,6 @@
             "name": "filter[attivo]",
             "schema": {
               "type": "boolean"
-            }
-          },
-          {
-            "in": "query",
-            "name": "filter[amministratoreMonteOre]",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
             }
           },      
           {
@@ -604,7 +606,7 @@
                     "rows": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/CicloMonteOre"
+                        "$ref": "#/components/schemas/AnnoFormazioneScuolaLavoro"
                       }
                     },
                     "count": {
@@ -632,7 +634,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["CicloMonteOre"],
+        "tags": ["Anno Formazione Scuola Lavoro"],
         "parameters": [
           {
             "in": "path",
@@ -652,7 +654,7 @@
                 "required": ["data"],
                 "properties": {
                   "data": {
-                    "$ref": "#/components/schemas/CicloMonteOreInput"                
+                    "$ref": "#/components/schemas/AnnoFormazioneScuolaLavoroInput"                
                   }
                 }
               }
@@ -665,7 +667,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CicloMonteOre"
+                  "$ref": "#/components/schemas/AnnoFormazioneScuolaLavoro"
                 }
               }
             }
@@ -684,7 +686,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["CicloMonteOre"],
+        "tags": ["Anno Formazione Scuola Lavoro"],
         "parameters": [
           {
             "in": "path",
@@ -719,14 +721,14 @@
         }
       }
     },
-    "/tenant/{tenantId}/ciclo-monte-ore/autocomplete": {
+    "/tenant/{tenantId}/anno-formazione-scuola-lavoro/autocomplete": {
       "get": {
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "tags": ["CicloMonteOre"],
+        "tags": ["Anno Formazione Scuola Lavoro"],
         "parameters": [
           {
             "in": "path",
@@ -786,14 +788,14 @@
         }
       }
     },
-    "/tenant/{tenantId}/ciclo-monte-ore/import": {
+    "/tenant/{tenantId}/anno-formazione-scuola-lavoro/import": {
       "post": {
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "tags": ["CicloMonteOre"],
+        "tags": ["Anno Formazione Scuola Lavoro"],
         "parameters": [
           {
             "in": "path",
@@ -813,7 +815,7 @@
                 "required": ["data", "importHash"],
                 "properties": {
                   "data": {                      
-                    "$ref": "#/components/schemas/CicloMonteOreInput"
+                    "$ref": "#/components/schemas/AnnoFormazioneScuolaLavoroInput"
                   },
                   "importHash": {
                     "type": "string"
@@ -829,7 +831,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CicloMonteOre"
+                  "$ref": "#/components/schemas/AnnoFormazioneScuolaLavoro"
                 }
               }
             }
@@ -843,14 +845,14 @@
         }
       }
     },
-    "/tenant/{tenantId}/corso/{id}": {
+    "/tenant/{tenantId}/corso-formazione/{id}": {
       "get": {
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "tags": ["Corso"],
+        "tags": ["Corso Formazione"],
         "parameters": [
           {
             "in": "path",
@@ -875,7 +877,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Corso"
+                  "$ref": "#/components/schemas/CorsoFormazione"
                 }
               }
             }
@@ -894,7 +896,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Corso"],
+        "tags": ["Corso Formazione"],
         "parameters": [
           {
             "in": "path",
@@ -922,7 +924,7 @@
                 "required": ["data"],
                 "properties": {
                   "data": {
-                    "$ref": "#/components/schemas/CorsoInput"                
+                    "$ref": "#/components/schemas/CorsoFormazioneInput"                
                   }
                 }
               }
@@ -935,7 +937,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Corso"
+                  "$ref": "#/components/schemas/CorsoFormazione"
                 }
               }
             }
@@ -949,14 +951,14 @@
         }
       }
     },
-    "/tenant/{tenantId}/corso": {
+    "/tenant/{tenantId}/corso-formazione": {
       "get": {
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "tags": ["Corso"],
+        "tags": ["Corso Formazione"],
         "parameters": [
           {
             "in": "path",
@@ -1045,7 +1047,7 @@
                     "rows": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Corso"
+                        "$ref": "#/components/schemas/CorsoFormazione"
                       }
                     },
                     "count": {
@@ -1073,7 +1075,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Corso"],
+        "tags": ["Corso Formazione"],
         "parameters": [
           {
             "in": "path",
@@ -1093,7 +1095,7 @@
                 "required": ["data"],
                 "properties": {
                   "data": {
-                    "$ref": "#/components/schemas/CorsoInput"                
+                    "$ref": "#/components/schemas/CorsoFormazioneInput"                
                   }
                 }
               }
@@ -1106,7 +1108,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Corso"
+                  "$ref": "#/components/schemas/CorsoFormazione"
                 }
               }
             }
@@ -1125,7 +1127,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Corso"],
+        "tags": ["Corso Formazione"],
         "parameters": [
           {
             "in": "path",
@@ -1160,14 +1162,14 @@
         }
       }
     },
-    "/tenant/{tenantId}/corso/autocomplete": {
+    "/tenant/{tenantId}/corso-formazione/autocomplete": {
       "get": {
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "tags": ["Corso"],
+        "tags": ["Corso Formazione"],
         "parameters": [
           {
             "in": "path",
@@ -1227,14 +1229,14 @@
         }
       }
     },
-    "/tenant/{tenantId}/corso/import": {
+    "/tenant/{tenantId}/corso-formazione/import": {
       "post": {
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "tags": ["Corso"],
+        "tags": ["Corso Formazione"],
         "parameters": [
           {
             "in": "path",
@@ -1254,7 +1256,7 @@
                 "required": ["data", "importHash"],
                 "properties": {
                   "data": {                      
-                    "$ref": "#/components/schemas/CorsoInput"
+                    "$ref": "#/components/schemas/CorsoFormazioneInput"
                   },
                   "importHash": {
                     "type": "string"
@@ -1270,7 +1272,458 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Corso"
+                  "$ref": "#/components/schemas/CorsoFormazione"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too Many Requests."
+          }
+        }
+      }
+    },
+    "/tenant/{tenantId}/iscrizione-corso/{id}": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["IscrizioneCorso"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tenantId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IscrizioneCorso"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too Many Requests."
+          }
+        }
+      },
+      "put": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["IscrizioneCorso"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tenantId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["data"],
+                "properties": {
+                  "data": {
+                    "$ref": "#/components/schemas/IscrizioneCorsoInput"                
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IscrizioneCorso"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too Many Requests."
+          }
+        }
+      }
+    },
+    "/tenant/{tenantId}/iscrizione-corso": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["IscrizioneCorso"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tenantId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[id]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[dataIscrizioneRange][]",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[attiva]",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[studenteIscritto]",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[corsoIscrizione]",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },      
+          {
+            "in": "query",
+            "name": "filter[createdAtRange][]",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "explode": true
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "number",
+              "example": 0
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number",
+              "example": 10
+            }
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "schema": {
+              "type": "string",
+              "example": "createdAt_DESC"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "rows": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/IscrizioneCorso"
+                      }
+                    },
+                    "count": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Too Many Requests."
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["IscrizioneCorso"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tenantId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["data"],
+                "properties": {
+                  "data": {
+                    "$ref": "#/components/schemas/IscrizioneCorsoInput"                
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IscrizioneCorso"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too Many Requests."
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["IscrizioneCorso"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tenantId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "ids[]",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "explode": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too Many Requests."
+          }
+        }
+      }
+    },
+    "/tenant/{tenantId}/iscrizione-corso/autocomplete": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["IscrizioneCorso"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tenantId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number",
+              "example": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "label": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Too Many Requests."
+          }
+        }
+      }
+    },
+    "/tenant/{tenantId}/iscrizione-corso/import": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["IscrizioneCorso"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tenantId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {            
+                "type": "object",
+                "required": ["data", "importHash"],
+                "properties": {
+                  "data": {                      
+                    "$ref": "#/components/schemas/IscrizioneCorsoInput"
+                  },
+                  "importHash": {
+                    "type": "string"
+                  }              
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IscrizioneCorso"
                 }
               }
             }
@@ -2660,7 +3113,7 @@
       }
     },
     "schemas": {
-      "CicloMonteOre": {
+      "AnnoFormazioneScuolaLavoro": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenericEntity"
@@ -2668,7 +3121,10 @@
         ],
         "type": "object",
         "properties": {
-          "nomeCiclo": {
+          "numeroAnno": {
+            "type": "integer"
+          },
+          "nomeAnno": {
             "type": "string"
           },
           "inizioCiclo": {
@@ -2682,27 +3138,33 @@
           "attivo": {
             "type": "boolean"
           },
-          "amministratoreMonteOre": {
-            "$ref": "#/components/schemas/UserRelated"
-          },
-          "studenti": {
+          "amministratoriCorsiFormazione": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserRelated"
             }
           },
-          "corsi": {
+          "studentiImmatricolati": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Corso"
+              "$ref": "#/components/schemas/UserRelated"
+            }
+          },
+          "corsiDisponibili": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CorsoFormazione"
             }
           }    
         }
       },
-      "CicloMonteOreInput": {
+      "AnnoFormazioneScuolaLavoroInput": {
         "type": "object",
         "properties": {
-          "nomeCiclo": {
+          "numeroAnno": {
+            "type": "integer"
+          },
+          "nomeAnno": {
             "type": "string"
           },
           "inizioCiclo": {
@@ -2716,18 +3178,21 @@
           "attivo": {
             "type": "boolean"
           },
-          "amministratoreMonteOre": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "studenti": {
+          "amministratoriCorsiFormazione": {
             "type": "array",
             "items": {
               "type": "string",
               "format": "uuid"
             }
           },
-          "corsi": {
+          "studentiImmatricolati": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "corsiDisponibili": {
             "type": "array",
             "items": {
               "type": "string",
@@ -2736,7 +3201,7 @@
           }    
         }
       },
-      "Corso": {
+      "CorsoFormazione": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenericEntity"
@@ -2759,21 +3224,15 @@
               "$ref": "#/components/schemas/File"
             }
           },
-          "studentiIscritti": {
+          "iscrizioni": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/UserRelated"
-            }
-          },
-          "studentiAmmessi": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserRelated"
+              "$ref": "#/components/schemas/IscrizioneCorso"
             }
           }    
         }
       },
-      "CorsoInput": {
+      "CorsoFormazioneInput": {
         "type": "object",
         "properties": {
           "nome": {
@@ -2791,19 +3250,55 @@
               "$ref": "#/components/schemas/FileInput"
             }
           },
-          "studentiIscritti": {
+          "iscrizioni": {
             "type": "array",
             "items": {
               "type": "string",
               "format": "uuid"
             }
+          }    
+        }
+      },
+      "IscrizioneCorso": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GenericEntity"
+          }
+        ],
+        "type": "object",
+        "properties": {
+          "dataIscrizione": {
+            "type": "string",
+            "format": "date-time"
           },
-          "studentiAmmessi": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            }
+          "attiva": {
+            "type": "boolean"
+          },
+          "studenteIscritto": {
+            "$ref": "#/components/schemas/UserRelated"
+          },
+          "corsoIscrizione": {
+            "$ref": "#/components/schemas/CorsoFormazione"
+          }    
+        }
+      },
+      "IscrizioneCorsoInput": {
+        "type": "object",
+        "properties": {
+          "dataIscrizione": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "attiva": {
+            "type": "boolean"
+          },
+          "studenteIscritto": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "corsoIscrizione": {
+            "type": "string",
+            "format": "uuid"
           }    
         }
       },
@@ -2985,7 +3480,7 @@
             "items": {
               "$ref": "#/components/schemas/TenantUser"
             }
-          }
+          },
         }
       },
       "TenantUser": {

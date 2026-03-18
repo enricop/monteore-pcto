@@ -8,7 +8,7 @@ import { IRepositoryOptions } from './IRepositoryOptions';
 
 const Op = Sequelize.Op;
 
-class AnnoFormazioneScuolaLavoroRepository {
+class IscrizioneCorsoRepository {
 
   static async create(data, options: IRepositoryOptions) {
     const currentUser = SequelizeRepository.getCurrentUser(
@@ -23,17 +23,15 @@ class AnnoFormazioneScuolaLavoroRepository {
       options,
     );
 
-    const record = await options.database.annoFormazioneScuolaLavoro.create(
+    const record = await options.database.iscrizioneCorso.create(
       {
         ...lodash.pick(data, [
-          'numeroAnno',
-          'nomeAnno',
-          'inizioCiclo',
-          'fineCiclo',
-          'attivo',          
+          'dataIscrizione',
+          'attiva',          
           'importHash',
         ]),
-
+        studenteIscrittoId: data.studenteIscritto || null,
+        corsoIscrizioneId: data.corsoIscrizione || null,
         tenantId: tenant.id,
         createdById: currentUser.id,
         updatedById: currentUser.id,
@@ -43,15 +41,7 @@ class AnnoFormazioneScuolaLavoroRepository {
       },
     );
 
-    await record.setAmministratoriCorsiFormazione(data.amministratoriCorsiFormazione || [], {
-      transaction,
-    });
-    await record.setStudentiImmatricolati(data.studentiImmatricolati || [], {
-      transaction,
-    });
-    await record.setCorsiDisponibili(data.corsiDisponibili || [], {
-      transaction,
-    });    
+    
   
 
   
@@ -79,7 +69,7 @@ class AnnoFormazioneScuolaLavoroRepository {
       options,
     );
 
-    let record = await options.database.annoFormazioneScuolaLavoro.findOne(      
+    let record = await options.database.iscrizioneCorso.findOne(      
       {
         where: {
           id,
@@ -96,14 +86,12 @@ class AnnoFormazioneScuolaLavoroRepository {
     record = await record.update(
       {
         ...lodash.pick(data, [
-          'numeroAnno',
-          'nomeAnno',
-          'inizioCiclo',
-          'fineCiclo',
-          'attivo',          
+          'dataIscrizione',
+          'attiva',          
           'importHash',
         ]),
-
+        studenteIscrittoId: data.studenteIscritto || null,
+        corsoIscrizioneId: data.corsoIscrizione || null,
         updatedById: currentUser.id,
       },
       {
@@ -111,15 +99,7 @@ class AnnoFormazioneScuolaLavoroRepository {
       },
     );
 
-    await record.setAmministratoriCorsiFormazione(data.amministratoriCorsiFormazione || [], {
-      transaction,
-    });
-    await record.setStudentiImmatricolati(data.studentiImmatricolati || [], {
-      transaction,
-    });
-    await record.setCorsiDisponibili(data.corsiDisponibili || [], {
-      transaction,
-    });
+
 
 
 
@@ -142,7 +122,7 @@ class AnnoFormazioneScuolaLavoroRepository {
       options,
     );
 
-    let record = await options.database.annoFormazioneScuolaLavoro.findOne(
+    let record = await options.database.iscrizioneCorso.findOne(
       {
         where: {
           id,
@@ -174,14 +154,21 @@ class AnnoFormazioneScuolaLavoroRepository {
     );
 
     const include = [
-
+      {
+        model: options.database.user,
+        as: 'studenteIscritto',
+      },
+      {
+        model: options.database.corsoFormazione,
+        as: 'corsoIscrizione',
+      },
     ];
 
     const currentTenant = SequelizeRepository.getCurrentTenant(
       options,
     );
 
-    const record = await options.database.annoFormazioneScuolaLavoro.findOne(
+    const record = await options.database.iscrizioneCorso.findOne(
       {
         where: {
           id,
@@ -228,7 +215,7 @@ class AnnoFormazioneScuolaLavoroRepository {
       tenantId: currentTenant.id,
     };
 
-    const records = await options.database.annoFormazioneScuolaLavoro.findAll(
+    const records = await options.database.iscrizioneCorso.findAll(
       {
         attributes: ['id'],
         where,
@@ -247,7 +234,7 @@ class AnnoFormazioneScuolaLavoroRepository {
       options,
     );
 
-    return options.database.annoFormazioneScuolaLavoro.count(
+    return options.database.iscrizioneCorso.count(
       {
         where: {
           ...filter,
@@ -268,7 +255,14 @@ class AnnoFormazioneScuolaLavoroRepository {
 
     let whereAnd: Array<any> = [];
     let include = [
-      
+      {
+        model: options.database.user,
+        as: 'studenteIscritto',
+      },
+      {
+        model: options.database.corsoFormazione,
+        as: 'corsoIscrizione',
+      },      
     ];
 
     whereAnd.push({
@@ -282,12 +276,12 @@ class AnnoFormazioneScuolaLavoroRepository {
         });
       }
 
-      if (filter.numeroAnnoRange) {
-        const [start, end] = filter.numeroAnnoRange;
+      if (filter.dataIscrizioneRange) {
+        const [start, end] = filter.dataIscrizioneRange;
 
         if (start !== undefined && start !== null && start !== '') {
           whereAnd.push({
-            numeroAnno: {
+            dataIscrizione: {
               [Op.gte]: start,
             },
           });
@@ -295,57 +289,7 @@ class AnnoFormazioneScuolaLavoroRepository {
 
         if (end !== undefined && end !== null && end !== '') {
           whereAnd.push({
-            numeroAnno: {
-              [Op.lte]: end,
-            },
-          });
-        }
-      }
-
-      if (filter.nomeAnno) {
-        whereAnd.push(
-          SequelizeFilterUtils.ilikeIncludes(
-            'annoFormazioneScuolaLavoro',
-            'nomeAnno',
-            filter.nomeAnno,
-          ),
-        );
-      }
-
-      if (filter.inizioCicloRange) {
-        const [start, end] = filter.inizioCicloRange;
-
-        if (start !== undefined && start !== null && start !== '') {
-          whereAnd.push({
-            inizioCiclo: {
-              [Op.gte]: start,
-            },
-          });
-        }
-
-        if (end !== undefined && end !== null && end !== '') {
-          whereAnd.push({
-            inizioCiclo: {
-              [Op.lte]: end,
-            },
-          });
-        }
-      }
-
-      if (filter.fineCicloRange) {
-        const [start, end] = filter.fineCicloRange;
-
-        if (start !== undefined && start !== null && start !== '') {
-          whereAnd.push({
-            fineCiclo: {
-              [Op.gte]: start,
-            },
-          });
-        }
-
-        if (end !== undefined && end !== null && end !== '') {
-          whereAnd.push({
-            fineCiclo: {
+            dataIscrizione: {
               [Op.lte]: end,
             },
           });
@@ -353,15 +297,31 @@ class AnnoFormazioneScuolaLavoroRepository {
       }
 
       if (
-        filter.attivo === true ||
-        filter.attivo === 'true' ||
-        filter.attivo === false ||
-        filter.attivo === 'false'
+        filter.attiva === true ||
+        filter.attiva === 'true' ||
+        filter.attiva === false ||
+        filter.attiva === 'false'
       ) {
         whereAnd.push({
-          attivo:
-            filter.attivo === true ||
-            filter.attivo === 'true',
+          attiva:
+            filter.attiva === true ||
+            filter.attiva === 'true',
+        });
+      }
+
+      if (filter.studenteIscritto) {
+        whereAnd.push({
+          ['studenteIscrittoId']: SequelizeFilterUtils.uuid(
+            filter.studenteIscritto,
+          ),
+        });
+      }
+
+      if (filter.corsoIscrizione) {
+        whereAnd.push({
+          ['corsoIscrizioneId']: SequelizeFilterUtils.uuid(
+            filter.corsoIscrizione,
+          ),
         });
       }
 
@@ -399,7 +359,7 @@ class AnnoFormazioneScuolaLavoroRepository {
     let {
       rows,
       count,
-    } = await options.database.annoFormazioneScuolaLavoro.findAndCountAll({
+    } = await options.database.iscrizioneCorso.findAndCountAll({
       where,
       include,
       limit: limit ? Number(limit) : undefined,
@@ -433,25 +393,25 @@ class AnnoFormazioneScuolaLavoroRepository {
       whereAnd.push({
         [Op.or]: [
           { ['id']: SequelizeFilterUtils.uuid(query) },
-          { numeroAnno: query },
+
         ],
       });
     }
 
     const where = { [Op.and]: whereAnd };
 
-    const records = await options.database.annoFormazioneScuolaLavoro.findAll(
+    const records = await options.database.iscrizioneCorso.findAll(
       {
-        attributes: ['id', 'numeroAnno'],
+        attributes: ['id', 'id'],
         where,
         limit: limit ? Number(limit) : undefined,
-        order: [['numeroAnno', 'ASC']],
+        order: [['id', 'ASC']],
       },
     );
 
     return records.map((record) => ({
       id: record.id,
-      label: record.numeroAnno,
+      label: record.id,
     }));
   }
 
@@ -466,15 +426,13 @@ class AnnoFormazioneScuolaLavoroRepository {
     if (data) {
       values = {
         ...record.get({ plain: true }),
-        amministratoriCorsiFormazioneIds: data.amministratoriCorsiFormazione,
-        studentiImmatricolatiIds: data.studentiImmatricolati,
-        corsiDisponibiliIds: data.corsiDisponibili,
+
       };
     }
 
     await AuditLogRepository.log(
       {
-        entityName: 'annoFormazioneScuolaLavoro',
+        entityName: 'iscrizioneCorso',
         entityId: record.id,
         action,
         values,
@@ -509,24 +467,10 @@ class AnnoFormazioneScuolaLavoroRepository {
       options,
     );
 
-    output.amministratoriCorsiFormazione = await record.getAmministratoriCorsiFormazione({
-      transaction,
-    });
-
-    output.amministratoriCorsiFormazione = UserRepository.cleanupForRelationships(output.amministratoriCorsiFormazione);
-
-    output.studentiImmatricolati = await record.getStudentiImmatricolati({
-      transaction,
-    });
-
-    output.studentiImmatricolati = UserRepository.cleanupForRelationships(output.studentiImmatricolati);
-
-    output.corsiDisponibili = await record.getCorsiDisponibili({
-      transaction,
-    });
+    output.studenteIscritto = UserRepository.cleanupForRelationships(output.studenteIscritto);
 
     return output;
   }
 }
 
-export default AnnoFormazioneScuolaLavoroRepository;
+export default IscrizioneCorsoRepository;

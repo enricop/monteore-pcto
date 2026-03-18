@@ -3,8 +3,7 @@ import AuditLogRepository from '../../database/repositories/auditLogRepository';
 import lodash from 'lodash';
 import SequelizeFilterUtils from '../../database/utils/sequelizeFilterUtils';
 import Error404 from '../../errors/Error404';
-import Sequelize from 'sequelize';import UserRepository from './userRepository';
-import FileRepository from './fileRepository';
+import Sequelize from 'sequelize';import FileRepository from './fileRepository';
 import { IRepositoryOptions } from './IRepositoryOptions';
 
 const Op = Sequelize.Op;
@@ -42,7 +41,7 @@ class CorsoFormazioneRepository {
       },
     );
 
-    await record.setStudentiIscritti(data.studentiIscritti || [], {
+    await record.setIscrizioni(data.iscrizioni || [], {
       transaction,
     });    
   
@@ -110,7 +109,7 @@ class CorsoFormazioneRepository {
       },
     );
 
-    await record.setStudentiIscritti(data.studentiIscritti || [], {
+    await record.setIscrizioni(data.iscrizioni || [], {
       transaction,
     });
 
@@ -434,7 +433,7 @@ class CorsoFormazioneRepository {
       values = {
         ...record.get({ plain: true }),
         logo: data.logo,
-        studentiIscrittiIds: data.studentiIscritti,
+        iscrizioniIds: data.iscrizioni,
       };
     }
 
@@ -481,11 +480,9 @@ class CorsoFormazioneRepository {
       }),
     );
 
-    output.studentiIscritti = await record.getStudentiIscritti({
+    output.iscrizioni = await record.getIscrizioni({
       transaction,
     });
-
-    output.studentiIscritti = UserRepository.cleanupForRelationships(output.studentiIscritti);
 
     return output;
   }

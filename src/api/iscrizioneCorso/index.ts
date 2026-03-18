@@ -1,0 +1,30 @@
+export default (app) => {
+  app.post(
+    `/tenant/:tenantId/iscrizione-corso`,
+    require('./iscrizioneCorsoCreate').default,
+  );
+  app.put(
+    `/tenant/:tenantId/iscrizione-corso/:id`,
+    require('./iscrizioneCorsoUpdate').default,
+  );
+  app.post(
+    `/tenant/:tenantId/iscrizione-corso/import`,
+    require('./iscrizioneCorsoImport').default,
+  );
+  app.delete(
+    `/tenant/:tenantId/iscrizione-corso`,
+    require('./iscrizioneCorsoDestroy').default,
+  );
+  app.get(
+    `/tenant/:tenantId/iscrizione-corso/autocomplete`,
+    require('./iscrizioneCorsoAutocomplete').default,
+  );
+  app.get(
+    `/tenant/:tenantId/iscrizione-corso`,
+    require('./iscrizioneCorsoList').default,
+  );
+  app.get(
+    `/tenant/:tenantId/iscrizione-corso/:id`,
+    require('./iscrizioneCorsoFind').default,
+  );
+};

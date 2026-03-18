@@ -9,6 +9,9 @@ export default function (sequelize) {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
+      numeroAnno: {
+        type: DataTypes.INTEGER,
+      },
       nomeAnno: {
         type: DataTypes.TEXT,
       },
@@ -40,9 +43,6 @@ export default function (sequelize) {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false,
-      },
-      numeroAnno: {
-        type: DataTypes.INTEGER,
       },
       importHash: {
         type: DataTypes.STRING(255),
