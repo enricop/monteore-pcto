@@ -5,7 +5,7 @@ class Roles {
       admin: 'admin',
       amministrazione: 'amministrazione',
       docente: 'docente',
-      studente: 'studente',
+      studente: 'studente'
     };
   }
 }
