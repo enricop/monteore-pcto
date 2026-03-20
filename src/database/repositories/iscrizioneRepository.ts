@@ -317,6 +317,18 @@ class IscrizioneRepository {
         });
       }
 
+      if (filter.currentStudent) {
+        const currentUser = SequelizeRepository.getCurrentUser(
+          options,
+        );
+
+        whereAnd.push({
+          ['studenteId']: SequelizeFilterUtils.uuid(
+            currentUser.id,
+          ),
+        });
+      }
+
       if (filter.corso) {
         whereAnd.push({
           ['corsoId']: SequelizeFilterUtils.uuid(
