@@ -83,7 +83,7 @@ class Permissions {
       },
       userRead: {
         id: 'userRead',
-        allowedRoles: [roles.admin, roles.amministrazione, roles.docente],
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
         allowedPlans: [
           plans.free,
           plans.growth,
@@ -92,7 +92,7 @@ class Permissions {
       },
       userAutocomplete: {
         id: 'userAutocomplete',
-        allowedRoles: [roles.admin, roles.amministrazione, roles.docente],
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
         allowedPlans: [
           plans.free,
           plans.growth,
@@ -203,7 +203,7 @@ class Permissions {
 
       iscrizioneCorsoImport: {
         id: 'iscrizioneCorsoImport',
-        allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
+        allowedRoles: [roles.admin, roles.amministrazione, roles.docente],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
       iscrizioneCorsoCreate: {

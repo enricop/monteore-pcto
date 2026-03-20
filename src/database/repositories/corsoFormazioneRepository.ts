@@ -362,6 +362,30 @@ class CorsoFormazioneRepository {
           });
         }
       }
+
+      if (filter.annoFormazione) {
+        whereAnd.push(
+          SequelizeFilterUtils.ilikeIncludes(
+            'annoFormazione',
+            'numeroAnno',
+            filter.annoFormazione,
+          ),
+        );
+      }
+
+      if (filter.annoFormazione) {
+        const currentUser = SequelizeRepository.getCurrentUser(
+          options,
+        );
+
+        whereAnd.push(
+          SequelizeFilterUtils.ilikeIncludes(
+            'annoFormazione',
+            'numeroAnno',
+            filter.annoFormazione,
+          ),
+        );
+      }
     }
 
     const where = { [Op.and]: whereAnd };
