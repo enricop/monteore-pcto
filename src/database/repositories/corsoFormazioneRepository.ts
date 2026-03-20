@@ -26,12 +26,12 @@ class CorsoFormazioneRepository {
     const record = await options.database.corsoFormazione.create(
       {
         ...lodash.pick(data, [
-          'nome',
+          'nomeCorso',
           'massimoNumeroIscritti',
-          'attivo',          
+          'attualmenteAttivo',          
           'importHash',
         ]),
-        annoFormazioneId: data.annoFormazione || null,
+        annoScolasticoId: data.annoScolastico || null,
         tenantId: tenant.id,
         createdById: currentUser.id,
         updatedById: currentUser.id,
@@ -94,12 +94,12 @@ class CorsoFormazioneRepository {
     record = await record.update(
       {
         ...lodash.pick(data, [
-          'nome',
+          'nomeCorso',
           'massimoNumeroIscritti',
-          'attivo',          
+          'attualmenteAttivo',          
           'importHash',
         ]),
-        annoFormazioneId: data.annoFormazione || null,
+        annoScolasticoId: data.annoScolastico || null,
         updatedById: currentUser.id,
       },
       {
@@ -171,8 +171,8 @@ class CorsoFormazioneRepository {
 
     const include = [
       {
-        model: options.database.annoFormazioneScuolaLavoro,
-        as: 'annoFormazione',
+        model: options.database.annoScolasticoFormazione,
+        as: 'annoScolastico',
       },
     ];
 
@@ -268,8 +268,8 @@ class CorsoFormazioneRepository {
     let whereAnd: Array<any> = [];
     let include = [
       {
-        model: options.database.annoFormazioneScuolaLavoro,
-        as: 'annoFormazione',
+        model: options.database.annoScolasticoFormazione,
+        as: 'annoScolastico',
       },      
     ];
 
@@ -284,12 +284,12 @@ class CorsoFormazioneRepository {
         });
       }
 
-      if (filter.nome) {
+      if (filter.nomeCorso) {
         whereAnd.push(
           SequelizeFilterUtils.ilikeIncludes(
             'corsoFormazione',
-            'nome',
-            filter.nome,
+            'nomeCorso',
+            filter.nomeCorso,
           ),
         );
       }
@@ -315,22 +315,22 @@ class CorsoFormazioneRepository {
       }
 
       if (
-        filter.attivo === true ||
-        filter.attivo === 'true' ||
-        filter.attivo === false ||
-        filter.attivo === 'false'
+        filter.attualmenteAttivo === true ||
+        filter.attualmenteAttivo === 'true' ||
+        filter.attualmenteAttivo === false ||
+        filter.attualmenteAttivo === 'false'
       ) {
         whereAnd.push({
-          attivo:
-            filter.attivo === true ||
-            filter.attivo === 'true',
+          attualmenteAttivo:
+            filter.attualmenteAttivo === true ||
+            filter.attualmenteAttivo === 'true',
         });
       }
 
-      if (filter.annoFormazione) {
+      if (filter.annoScolastico) {
         whereAnd.push({
-          ['annoFormazioneId']: SequelizeFilterUtils.uuid(
-            filter.annoFormazione,
+          ['annoScolasticoId']: SequelizeFilterUtils.uuid(
+            filter.annoScolastico,
           ),
         });
       }
@@ -365,23 +365,9 @@ class CorsoFormazioneRepository {
 
       if (filter.annoFormazione) {
         whereAnd.push(
-          SequelizeFilterUtils.ilikeIncludes(
-            'annoFormazione',
-            'numeroAnno',
-            filter.annoFormazione,
-          ),
-        );
-      }
-
-      if (filter.annoFormazione) {
-        const currentUser = SequelizeRepository.getCurrentUser(
-          options,
-        );
-
-        whereAnd.push(
-          SequelizeFilterUtils.ilikeIncludes(
-            'annoFormazione',
-            'numeroAnno',
+          SequelizeFilterUtils.iloveExact(
+            'annoScolastico',
+            'nomeAnnoScolastico',
             filter.annoFormazione,
           ),
         );
@@ -430,7 +416,7 @@ class CorsoFormazioneRepository {
           {
             [Op.and]: SequelizeFilterUtils.ilikeIncludes(
               'corsoFormazione',
-              'nome',
+              'nomeCorso',
               query,
             ),
           },
@@ -442,16 +428,16 @@ class CorsoFormazioneRepository {
 
     const records = await options.database.corsoFormazione.findAll(
       {
-        attributes: ['id', 'nome'],
+        attributes: ['id', 'nomeCorso'],
         where,
         limit: limit ? Number(limit) : undefined,
-        order: [['nome', 'ASC']],
+        order: [['nomeCorso', 'ASC']],
       },
     );
 
     return records.map((record) => ({
       id: record.id,
-      label: record.nome,
+      label: record.nomeCorso,
     }));
   }
 

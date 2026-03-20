@@ -121,42 +121,42 @@ class Permissions {
           storage.settingsLogos,
         ],
       },
-      annoFormazioneScuolaLavoroImport: {
-        id: 'annoFormazioneScuolaLavoroImport',
+      annoScolasticoFormazioneImport: {
+        id: 'annoScolasticoFormazioneImport',
         allowedRoles: [roles.admin, roles.amministrazione],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
-      annoFormazioneScuolaLavoroCreate: {
-        id: 'annoFormazioneScuolaLavoroCreate',
-        allowedRoles: [roles.admin, roles.amministrazione],
-        allowedPlans: [plans.free, plans.growth, plans.enterprise],
-        allowedStorage: [
-
-        ],
-      },
-      annoFormazioneScuolaLavoroEdit: {
-        id: 'annoFormazioneScuolaLavoroEdit',
+      annoScolasticoFormazioneCreate: {
+        id: 'annoScolasticoFormazioneCreate',
         allowedRoles: [roles.admin, roles.amministrazione],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
 
         ],
       },
-      annoFormazioneScuolaLavoroDestroy: {
-        id: 'annoFormazioneScuolaLavoroDestroy',
+      annoScolasticoFormazioneEdit: {
+        id: 'annoScolasticoFormazioneEdit',
+        allowedRoles: [roles.admin, roles.amministrazione],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+        allowedStorage: [
+
+        ],
+      },
+      annoScolasticoFormazioneDestroy: {
+        id: 'annoScolasticoFormazioneDestroy',
         allowedRoles: [roles.admin],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
 
         ],
       },
-      annoFormazioneScuolaLavoroRead: {
-        id: 'annoFormazioneScuolaLavoroRead',
+      annoScolasticoFormazioneRead: {
+        id: 'annoScolasticoFormazioneRead',
         allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
-      annoFormazioneScuolaLavoroAutocomplete: {
-        id: 'annoFormazioneScuolaLavoroAutocomplete',
+      annoScolasticoFormazioneAutocomplete: {
+        id: 'annoScolasticoFormazioneAutocomplete',
         allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
@@ -201,45 +201,45 @@ class Permissions {
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
 
-      iscrizioneCorsoImport: {
-        id: 'iscrizioneCorsoImport',
+      iscrizioneImport: {
+        id: 'iscrizioneImport',
         allowedRoles: [roles.admin, roles.amministrazione, roles.docente],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
-      iscrizioneCorsoCreate: {
-        id: 'iscrizioneCorsoCreate',
+      iscrizioneCreate: {
+        id: 'iscrizioneCreate',
         allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
 
         ],
       },
-      iscrizioneCorsoEdit: {
-        id: 'iscrizioneCorsoEdit',
+      iscrizioneEdit: {
+        id: 'iscrizioneEdit',
         allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
 
         ],
       },
-      iscrizioneCorsoDestroy: {
-        id: 'iscrizioneCorsoDestroy',
+      iscrizioneDestroy: {
+        id: 'iscrizioneDestroy',
         allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
 
         ],
       },
-      iscrizioneCorsoRead: {
-        id: 'iscrizioneCorsoRead',
+      iscrizioneRead: {
+        id: 'iscrizioneRead',
         allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
-      iscrizioneCorsoAutocomplete: {
-        id: 'iscrizioneCorsoAutocomplete',
+      iscrizioneAutocomplete: {
+        id: 'iscrizioneAutocomplete',
         allowedRoles: [roles.admin, roles.amministrazione, roles.docente, roles.studente],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
-      },      
+      },
     };
   }
 

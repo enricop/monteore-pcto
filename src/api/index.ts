@@ -68,9 +68,9 @@ require('./tenant').default(routes);
 require('./file').default(routes);
 require('./user').default(routes);
 require('./settings').default(routes);
-require('./annoFormazioneScuolaLavoro').default(routes);
+require('./annoScolasticoFormazione').default(routes);
 require('./corsoFormazione').default(routes);
-require('./iscrizioneCorso').default(routes);
+require('./iscrizione').default(routes);
 
 // Loads the Tenant if the :tenantId param is passed
 routes.param('tenantId', tenantMiddleware);

@@ -382,14 +382,14 @@
         }
       }
     },
-    "/tenant/{tenantId}/anno-formazione-scuola-lavoro/{id}": {
+    "/tenant/{tenantId}/anno-scolastico-formazione/{id}": {
       "get": {
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "tags": ["Anno Formazione Scuola Lavoro"],
+        "tags": ["Anno Scolastico Formazione"],
         "parameters": [
           {
             "in": "path",
@@ -414,7 +414,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AnnoFormazioneScuolaLavoro"
+                  "$ref": "#/components/schemas/AnnoScolasticoFormazione"
                 }
               }
             }
@@ -433,7 +433,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Anno Formazione Scuola Lavoro"],
+        "tags": ["Anno Scolastico Formazione"],
         "parameters": [
           {
             "in": "path",
@@ -461,7 +461,7 @@
                 "required": ["data"],
                 "properties": {
                   "data": {
-                    "$ref": "#/components/schemas/AnnoFormazioneScuolaLavoroInput"                
+                    "$ref": "#/components/schemas/AnnoScolasticoFormazioneInput"                
                   }
                 }
               }
@@ -474,7 +474,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AnnoFormazioneScuolaLavoro"
+                  "$ref": "#/components/schemas/AnnoScolasticoFormazione"
                 }
               }
             }
@@ -488,14 +488,14 @@
         }
       }
     },
-    "/tenant/{tenantId}/anno-formazione-scuola-lavoro": {
+    "/tenant/{tenantId}/anno-scolastico-formazione": {
       "get": {
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "tags": ["Anno Formazione Scuola Lavoro"],
+        "tags": ["Anno Scolastico Formazione"],
         "parameters": [
           {
             "in": "path",
@@ -514,7 +514,7 @@
           },
           {
             "in": "query",
-            "name": "filter[numeroAnnoRange][]",
+            "name": "filter[inizioAnnoScolasticoRange][]",
             "schema": {
               "type": "array",
               "items": {
@@ -524,14 +524,14 @@
           },
           {
             "in": "query",
-            "name": "filter[nomeAnno]",
+            "name": "filter[nomeAnnoScolastico]",
             "schema": {
               "type": "string"
             }
           },
           {
             "in": "query",
-            "name": "filter[inizioCicloRange][]",
+            "name": "filter[dataInizioCicloFormazioneRange][]",
             "schema": {
               "type": "array",
               "items": {
@@ -542,7 +542,7 @@
           },
           {
             "in": "query",
-            "name": "filter[fineCicloRange][]",
+            "name": "filter[dataFineCicloFormazioneRange][]",
             "schema": {
               "type": "array",
               "items": {
@@ -553,7 +553,7 @@
           },
           {
             "in": "query",
-            "name": "filter[attivo]",
+            "name": "filter[attualmenteAttivo]",
             "schema": {
               "type": "boolean"
             }
@@ -606,7 +606,7 @@
                     "rows": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/AnnoFormazioneScuolaLavoro"
+                        "$ref": "#/components/schemas/AnnoScolasticoFormazione"
                       }
                     },
                     "count": {
@@ -634,7 +634,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Anno Formazione Scuola Lavoro"],
+        "tags": ["Anno Scolastico Formazione"],
         "parameters": [
           {
             "in": "path",
@@ -654,7 +654,7 @@
                 "required": ["data"],
                 "properties": {
                   "data": {
-                    "$ref": "#/components/schemas/AnnoFormazioneScuolaLavoroInput"                
+                    "$ref": "#/components/schemas/AnnoScolasticoFormazioneInput"                
                   }
                 }
               }
@@ -667,7 +667,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AnnoFormazioneScuolaLavoro"
+                  "$ref": "#/components/schemas/AnnoScolasticoFormazione"
                 }
               }
             }
@@ -686,7 +686,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Anno Formazione Scuola Lavoro"],
+        "tags": ["Anno Scolastico Formazione"],
         "parameters": [
           {
             "in": "path",
@@ -721,14 +721,14 @@
         }
       }
     },
-    "/tenant/{tenantId}/anno-formazione-scuola-lavoro/autocomplete": {
+    "/tenant/{tenantId}/anno-scolastico-formazione/autocomplete": {
       "get": {
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "tags": ["Anno Formazione Scuola Lavoro"],
+        "tags": ["Anno Scolastico Formazione"],
         "parameters": [
           {
             "in": "path",
@@ -788,14 +788,14 @@
         }
       }
     },
-    "/tenant/{tenantId}/anno-formazione-scuola-lavoro/import": {
+    "/tenant/{tenantId}/anno-scolastico-formazione/import": {
       "post": {
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "tags": ["Anno Formazione Scuola Lavoro"],
+        "tags": ["Anno Scolastico Formazione"],
         "parameters": [
           {
             "in": "path",
@@ -815,7 +815,7 @@
                 "required": ["data", "importHash"],
                 "properties": {
                   "data": {                      
-                    "$ref": "#/components/schemas/AnnoFormazioneScuolaLavoroInput"
+                    "$ref": "#/components/schemas/AnnoScolasticoFormazioneInput"
                   },
                   "importHash": {
                     "type": "string"
@@ -831,7 +831,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AnnoFormazioneScuolaLavoro"
+                  "$ref": "#/components/schemas/AnnoScolasticoFormazione"
                 }
               }
             }
@@ -977,7 +977,7 @@
           },
           {
             "in": "query",
-            "name": "filter[nome]",
+            "name": "filter[nomeCorso]",
             "schema": {
               "type": "string"
             }
@@ -994,14 +994,14 @@
           },
           {
             "in": "query",
-            "name": "filter[attivo]",
+            "name": "filter[attualmenteAttivo]",
             "schema": {
               "type": "boolean"
             }
           },
           {
             "in": "query",
-            "name": "filter[annoFormazione]",
+            "name": "filter[annoScolastico]",
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -1294,14 +1294,14 @@
         }
       }
     },
-    "/tenant/{tenantId}/iscrizione-corso/{id}": {
+    "/tenant/{tenantId}/iscrizione/{id}": {
       "get": {
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "tags": ["IscrizioneCorso"],
+        "tags": ["Iscrizione"],
         "parameters": [
           {
             "in": "path",
@@ -1326,7 +1326,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IscrizioneCorso"
+                  "$ref": "#/components/schemas/Iscrizione"
                 }
               }
             }
@@ -1345,7 +1345,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["IscrizioneCorso"],
+        "tags": ["Iscrizione"],
         "parameters": [
           {
             "in": "path",
@@ -1373,7 +1373,7 @@
                 "required": ["data"],
                 "properties": {
                   "data": {
-                    "$ref": "#/components/schemas/IscrizioneCorsoInput"                
+                    "$ref": "#/components/schemas/IscrizioneInput"                
                   }
                 }
               }
@@ -1386,7 +1386,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IscrizioneCorso"
+                  "$ref": "#/components/schemas/Iscrizione"
                 }
               }
             }
@@ -1400,14 +1400,14 @@
         }
       }
     },
-    "/tenant/{tenantId}/iscrizione-corso": {
+    "/tenant/{tenantId}/iscrizione": {
       "get": {
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "tags": ["IscrizioneCorso"],
+        "tags": ["Iscrizione"],
         "parameters": [
           {
             "in": "path",
@@ -1437,14 +1437,14 @@
           },
           {
             "in": "query",
-            "name": "filter[attiva]",
+            "name": "filter[attualmenteAttiva]",
             "schema": {
               "type": "boolean"
             }
           },
           {
             "in": "query",
-            "name": "filter[studenteIscritto]",
+            "name": "filter[studente]",
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -1452,7 +1452,7 @@
           },
           {
             "in": "query",
-            "name": "filter[corsoIscrizione]",
+            "name": "filter[corso]",
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -1506,7 +1506,7 @@
                     "rows": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/IscrizioneCorso"
+                        "$ref": "#/components/schemas/Iscrizione"
                       }
                     },
                     "count": {
@@ -1534,7 +1534,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["IscrizioneCorso"],
+        "tags": ["Iscrizione"],
         "parameters": [
           {
             "in": "path",
@@ -1554,7 +1554,7 @@
                 "required": ["data"],
                 "properties": {
                   "data": {
-                    "$ref": "#/components/schemas/IscrizioneCorsoInput"                
+                    "$ref": "#/components/schemas/IscrizioneInput"                
                   }
                 }
               }
@@ -1567,7 +1567,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IscrizioneCorso"
+                  "$ref": "#/components/schemas/Iscrizione"
                 }
               }
             }
@@ -1586,7 +1586,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["IscrizioneCorso"],
+        "tags": ["Iscrizione"],
         "parameters": [
           {
             "in": "path",
@@ -1621,14 +1621,14 @@
         }
       }
     },
-    "/tenant/{tenantId}/iscrizione-corso/autocomplete": {
+    "/tenant/{tenantId}/iscrizione/autocomplete": {
       "get": {
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "tags": ["IscrizioneCorso"],
+        "tags": ["Iscrizione"],
         "parameters": [
           {
             "in": "path",
@@ -1688,14 +1688,14 @@
         }
       }
     },
-    "/tenant/{tenantId}/iscrizione-corso/import": {
+    "/tenant/{tenantId}/iscrizione/import": {
       "post": {
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "tags": ["IscrizioneCorso"],
+        "tags": ["Iscrizione"],
         "parameters": [
           {
             "in": "path",
@@ -1715,7 +1715,7 @@
                 "required": ["data", "importHash"],
                 "properties": {
                   "data": {                      
-                    "$ref": "#/components/schemas/IscrizioneCorsoInput"
+                    "$ref": "#/components/schemas/IscrizioneInput"
                   },
                   "importHash": {
                     "type": "string"
@@ -1731,7 +1731,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/IscrizioneCorso"
+                  "$ref": "#/components/schemas/Iscrizione"
                 }
               }
             }
@@ -3121,7 +3121,7 @@
       }
     },
     "schemas": {
-      "AnnoFormazioneScuolaLavoro": {
+      "AnnoScolasticoFormazione": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenericEntity"
@@ -3129,24 +3129,24 @@
         ],
         "type": "object",
         "properties": {
-          "numeroAnno": {
+          "inizioAnnoScolastico": {
             "type": "integer"
           },
-          "nomeAnno": {
+          "nomeAnnoScolastico": {
             "type": "string"
           },
-          "inizioCiclo": {
+          "dataInizioCicloFormazione": {
             "type": "string",
             "format": "date"
           },
-          "fineCiclo": {
+          "dataFineCicloFormazione": {
             "type": "string",
             "format": "date"
           },
-          "attivo": {
+          "attualmenteAttivo": {
             "type": "boolean"
           },
-          "amministratoriCorsiFormazione": {
+          "amministratoriCorsi": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserRelated"
@@ -3160,27 +3160,27 @@
           }    
         }
       },
-      "AnnoFormazioneScuolaLavoroInput": {
+      "AnnoScolasticoFormazioneInput": {
         "type": "object",
         "properties": {
-          "numeroAnno": {
+          "inizioAnnoScolastico": {
             "type": "integer"
           },
-          "nomeAnno": {
+          "nomeAnnoScolastico": {
             "type": "string"
           },
-          "inizioCiclo": {
+          "dataInizioCicloFormazione": {
             "type": "string",
             "format": "date"
           },
-          "fineCiclo": {
+          "dataFineCicloFormazione": {
             "type": "string",
             "format": "date"
           },
-          "attivo": {
+          "attualmenteAttivo": {
             "type": "boolean"
           },
-          "amministratoriCorsiFormazione": {
+          "amministratoriCorsi": {
             "type": "array",
             "items": {
               "type": "string",
@@ -3204,13 +3204,13 @@
         ],
         "type": "object",
         "properties": {
-          "nome": {
+          "nomeCorso": {
             "type": "string"
           },
           "massimoNumeroIscritti": {
             "type": "integer"
           },
-          "attivo": {
+          "attualmenteAttivo": {
             "type": "boolean"
           },
           "logo": {
@@ -3219,21 +3219,21 @@
               "$ref": "#/components/schemas/File"
             }
           },
-          "annoFormazione": {
-            "$ref": "#/components/schemas/AnnoFormazioneScuolaLavoro"
+          "annoScolastico": {
+            "$ref": "#/components/schemas/AnnoScolasticoFormazione"
           }    
         }
       },
       "CorsoFormazioneInput": {
         "type": "object",
         "properties": {
-          "nome": {
+          "nomeCorso": {
             "type": "string"
           },
           "massimoNumeroIscritti": {
             "type": "integer"
           },
-          "attivo": {
+          "attualmenteAttivo": {
             "type": "boolean"
           },
           "logo": {
@@ -3242,13 +3242,13 @@
               "$ref": "#/components/schemas/FileInput"
             }
           },
-          "annoFormazione": {
+          "annoScolastico": {
             "type": "string",
             "format": "uuid"
           }    
         }
       },
-      "IscrizioneCorso": {
+      "Iscrizione": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenericEntity"
@@ -3260,32 +3260,32 @@
             "type": "string",
             "format": "date-time"
           },
-          "attiva": {
+          "attualmenteAttiva": {
             "type": "boolean"
           },
-          "studenteIscritto": {
+          "studente": {
             "$ref": "#/components/schemas/UserRelated"
           },
-          "corsoIscrizione": {
+          "corso": {
             "$ref": "#/components/schemas/CorsoFormazione"
           }    
         }
       },
-      "IscrizioneCorsoInput": {
+      "IscrizioneInput": {
         "type": "object",
         "properties": {
           "dataIscrizione": {
             "type": "string",
             "format": "date-time"
           },
-          "attiva": {
+          "attualmenteAttiva": {
             "type": "boolean"
           },
-          "studenteIscritto": {
+          "studente": {
             "type": "string",
             "format": "uuid"
           },
-          "corsoIscrizione": {
+          "corso": {
             "type": "string",
             "format": "uuid"
           }    

@@ -1,10 +1,10 @@
 import Error400 from '../errors/Error400';
 import SequelizeRepository from '../database/repositories/sequelizeRepository';
 import { IServiceOptions } from './IServiceOptions';
-import AnnoFormazioneScuolaLavoroRepository from '../database/repositories/annoFormazioneScuolaLavoroRepository';
+import AnnoScolasticoFormazioneRepository from '../database/repositories/annoScolasticoFormazioneRepository';
 import UserRepository from '../database/repositories/userRepository';
 
-export default class AnnoFormazioneScuolaLavoroService {
+export default class AnnoScolasticoFormazioneService {
   options: IServiceOptions;
 
   constructor(options) {
@@ -17,10 +17,10 @@ export default class AnnoFormazioneScuolaLavoroService {
     );
 
     try {
-      data.amministratoriCorsiFormazione = await UserRepository.filterIdsInTenant(data.amministratoriCorsiFormazione, { ...this.options, transaction });
+      data.amministratoriCorsi = await UserRepository.filterIdsInTenant(data.amministratoriCorsi, { ...this.options, transaction });
       data.studentiImmatricolati = await UserRepository.filterIdsInTenant(data.studentiImmatricolati, { ...this.options, transaction });
 
-      const record = await AnnoFormazioneScuolaLavoroRepository.create(data, {
+      const record = await AnnoScolasticoFormazioneRepository.create(data, {
         ...this.options,
         transaction,
       });
@@ -38,7 +38,7 @@ export default class AnnoFormazioneScuolaLavoroService {
       SequelizeRepository.handleUniqueFieldError(
         error,
         this.options.language,
-        'annoFormazioneScuolaLavoro',
+        'annoScolasticoFormazione',
       );
 
       throw error;
@@ -51,10 +51,10 @@ export default class AnnoFormazioneScuolaLavoroService {
     );
 
     try {
-      data.amministratoriCorsiFormazione = await UserRepository.filterIdsInTenant(data.amministratoriCorsiFormazione, { ...this.options, transaction });
+      data.amministratoriCorsi = await UserRepository.filterIdsInTenant(data.amministratoriCorsi, { ...this.options, transaction });
       data.studentiImmatricolati = await UserRepository.filterIdsInTenant(data.studentiImmatricolati, { ...this.options, transaction });
 
-      const record = await AnnoFormazioneScuolaLavoroRepository.update(
+      const record = await AnnoScolasticoFormazioneRepository.update(
         id,
         data,
         {
@@ -76,7 +76,7 @@ export default class AnnoFormazioneScuolaLavoroService {
       SequelizeRepository.handleUniqueFieldError(
         error,
         this.options.language,
-        'annoFormazioneScuolaLavoro',
+        'annoScolasticoFormazione',
       );
 
       throw error;
@@ -90,7 +90,7 @@ export default class AnnoFormazioneScuolaLavoroService {
 
     try {
       for (const id of ids) {
-        await AnnoFormazioneScuolaLavoroRepository.destroy(id, {
+        await AnnoScolasticoFormazioneRepository.destroy(id, {
           ...this.options,
           transaction,
         });
@@ -108,11 +108,11 @@ export default class AnnoFormazioneScuolaLavoroService {
   }
 
   async findById(id) {
-    return AnnoFormazioneScuolaLavoroRepository.findById(id, this.options);
+    return AnnoScolasticoFormazioneRepository.findById(id, this.options);
   }
 
   async findAllAutocomplete(search, limit) {
-    return AnnoFormazioneScuolaLavoroRepository.findAllAutocomplete(
+    return AnnoScolasticoFormazioneRepository.findAllAutocomplete(
       search,
       limit,
       this.options,
@@ -120,7 +120,7 @@ export default class AnnoFormazioneScuolaLavoroService {
   }
 
   async findAndCountAll(args) {
-    return AnnoFormazioneScuolaLavoroRepository.findAndCountAll(
+    return AnnoScolasticoFormazioneRepository.findAndCountAll(
       args,
       this.options,
     );
@@ -150,7 +150,7 @@ export default class AnnoFormazioneScuolaLavoroService {
   }
 
   async _isImportHashExistent(importHash) {
-    const count = await AnnoFormazioneScuolaLavoroRepository.count(
+    const count = await AnnoScolasticoFormazioneRepository.count(
       {
         importHash,
       },

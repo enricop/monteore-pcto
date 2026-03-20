@@ -1,0 +1,30 @@
+export default (app) => {
+  app.post(
+    `/tenant/:tenantId/anno-scolastico-formazione`,
+    require('./annoScolasticoFormazioneCreate').default,
+  );
+  app.put(
+    `/tenant/:tenantId/anno-scolastico-formazione/:id`,
+    require('./annoScolasticoFormazioneUpdate').default,
+  );
+  app.post(
+    `/tenant/:tenantId/anno-scolastico-formazione/import`,
+    require('./annoScolasticoFormazioneImport').default,
+  );
+  app.delete(
+    `/tenant/:tenantId/anno-scolastico-formazione`,
+    require('./annoScolasticoFormazioneDestroy').default,
+  );
+  app.get(
+    `/tenant/:tenantId/anno-scolastico-formazione/autocomplete`,
+    require('./annoScolasticoFormazioneAutocomplete').default,
+  );
+  app.get(
+    `/tenant/:tenantId/anno-scolastico-formazione`,
+    require('./annoScolasticoFormazioneList').default,
+  );
+  app.get(
+    `/tenant/:tenantId/anno-scolastico-formazione/:id`,
+    require('./annoScolasticoFormazioneFind').default,
+  );
+};

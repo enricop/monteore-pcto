@@ -86,21 +86,22 @@ const ptBR = {
   },
 
   entities: {
-    annoFormazioneScuolaLavoro: {
+    annoScolasticoFormazione: {
       errors: {
         unique: {
-          numeroAnno: 'NumeroAnno deve ser único',
+          inizioAnnoScolastico: 'InizioAnnoScolastico deve ser único',
+          nomeAnnoScolastico: 'NomeAnnoScolastico deve ser único',
         }
       }
     },
     corsoFormazione: {
       errors: {
         unique: {
-          nome: 'Nome deve ser único',
+          nomeCorso: 'NomeCorso deve ser único',
         }
       }
     },
-    iscrizioneCorso: {
+    iscrizione: {
       errors: {
         unique: {
 

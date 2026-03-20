@@ -90,21 +90,22 @@ const es = {
   },
 
   entities: {
-    annoFormazioneScuolaLavoro: {
+    annoScolasticoFormazione: {
       errors: {
         unique: {
-          numeroAnno: 'NumeroAnno debe ser único',
+          inizioAnnoScolastico: 'InizioAnnoScolastico debe ser único',
+          nomeAnnoScolastico: 'NomeAnnoScolastico debe ser único',
         }
       }
     },
     corsoFormazione: {
       errors: {
         unique: {
-          nome: 'Nome debe ser único',
+          nomeCorso: 'NomeCorso debe ser único',
         }
       }
     },
-    iscrizioneCorso: {
+    iscrizione: {
       errors: {
         unique: {
 

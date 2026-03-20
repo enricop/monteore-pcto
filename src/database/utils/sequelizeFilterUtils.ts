@@ -51,4 +51,12 @@ export default class SequelizeFilterUtils {
       },
     );
   }
+
+  static iloveExact(model, column, value) {
+    return Sequelize.where(
+      Sequelize.col(`${model}.${column}`),
+      Sequelize.Op.eq,
+      value
+    );
+  }
 }

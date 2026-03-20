@@ -88,21 +88,22 @@ const en = {
   },
 
   entities: {
-    annoFormazioneScuolaLavoro: {
+    annoScolasticoFormazione: {
       errors: {
         unique: {
-          numeroAnno: 'NumeroAnno must be unique',
+          inizioAnnoScolastico: 'InizioAnnoScolastico must be unique',
+          nomeAnnoScolastico: 'NomeAnnoScolastico must be unique',
         }
       }
     },
     corsoFormazione: {
       errors: {
         unique: {
-          nome: 'Nome must be unique',
+          nomeCorso: 'NomeCorso must be unique',
         }
       }
     },
-    iscrizioneCorso: {
+    iscrizione: {
       errors: {
         unique: {
 

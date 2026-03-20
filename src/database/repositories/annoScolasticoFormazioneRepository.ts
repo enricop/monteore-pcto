@@ -8,7 +8,7 @@ import { IRepositoryOptions } from './IRepositoryOptions';
 
 const Op = Sequelize.Op;
 
-class IscrizioneCorsoRepository {
+class AnnoScolasticoFormazioneRepository {
 
   static async create(data, options: IRepositoryOptions) {
     const currentUser = SequelizeRepository.getCurrentUser(
@@ -23,15 +23,17 @@ class IscrizioneCorsoRepository {
       options,
     );
 
-    const record = await options.database.iscrizioneCorso.create(
+    const record = await options.database.annoScolasticoFormazione.create(
       {
         ...lodash.pick(data, [
-          'dataIscrizione',
-          'attiva',          
+          'inizioAnnoScolastico',
+          'nomeAnnoScolastico',
+          'dataInizioCicloFormazione',
+          'dataFineCicloFormazione',
+          'attualmenteAttivo',          
           'importHash',
         ]),
-        studenteIscrittoId: data.studenteIscritto || null,
-        corsoIscrizioneId: data.corsoIscrizione || null,
+
         tenantId: tenant.id,
         createdById: currentUser.id,
         updatedById: currentUser.id,
@@ -41,7 +43,12 @@ class IscrizioneCorsoRepository {
       },
     );
 
-    
+    await record.setAmministratoriCorsi(data.amministratoriCorsi || [], {
+      transaction,
+    });
+    await record.setStudentiImmatricolati(data.studentiImmatricolati || [], {
+      transaction,
+    });    
   
 
   
@@ -69,7 +76,7 @@ class IscrizioneCorsoRepository {
       options,
     );
 
-    let record = await options.database.iscrizioneCorso.findOne(      
+    let record = await options.database.annoScolasticoFormazione.findOne(      
       {
         where: {
           id,
@@ -86,12 +93,14 @@ class IscrizioneCorsoRepository {
     record = await record.update(
       {
         ...lodash.pick(data, [
-          'dataIscrizione',
-          'attiva',          
+          'inizioAnnoScolastico',
+          'nomeAnnoScolastico',
+          'dataInizioCicloFormazione',
+          'dataFineCicloFormazione',
+          'attualmenteAttivo',          
           'importHash',
         ]),
-        studenteIscrittoId: data.studenteIscritto || null,
-        corsoIscrizioneId: data.corsoIscrizione || null,
+
         updatedById: currentUser.id,
       },
       {
@@ -99,7 +108,12 @@ class IscrizioneCorsoRepository {
       },
     );
 
-
+    await record.setAmministratoriCorsi(data.amministratoriCorsi || [], {
+      transaction,
+    });
+    await record.setStudentiImmatricolati(data.studentiImmatricolati || [], {
+      transaction,
+    });
 
 
 
@@ -122,7 +136,7 @@ class IscrizioneCorsoRepository {
       options,
     );
 
-    let record = await options.database.iscrizioneCorso.findOne(
+    let record = await options.database.annoScolasticoFormazione.findOne(
       {
         where: {
           id,
@@ -154,21 +168,14 @@ class IscrizioneCorsoRepository {
     );
 
     const include = [
-      {
-        model: options.database.user,
-        as: 'studenteIscritto',
-      },
-      {
-        model: options.database.corsoFormazione,
-        as: 'corsoIscrizione',
-      },
+
     ];
 
     const currentTenant = SequelizeRepository.getCurrentTenant(
       options,
     );
 
-    const record = await options.database.iscrizioneCorso.findOne(
+    const record = await options.database.annoScolasticoFormazione.findOne(
       {
         where: {
           id,
@@ -215,7 +222,7 @@ class IscrizioneCorsoRepository {
       tenantId: currentTenant.id,
     };
 
-    const records = await options.database.iscrizioneCorso.findAll(
+    const records = await options.database.annoScolasticoFormazione.findAll(
       {
         attributes: ['id'],
         where,
@@ -234,7 +241,7 @@ class IscrizioneCorsoRepository {
       options,
     );
 
-    return options.database.iscrizioneCorso.count(
+    return options.database.annoScolasticoFormazione.count(
       {
         where: {
           ...filter,
@@ -255,14 +262,7 @@ class IscrizioneCorsoRepository {
 
     let whereAnd: Array<any> = [];
     let include = [
-      {
-        model: options.database.user,
-        as: 'studenteIscritto',
-      },
-      {
-        model: options.database.corsoFormazione,
-        as: 'corsoIscrizione',
-      },      
+      
     ];
 
     whereAnd.push({
@@ -276,12 +276,12 @@ class IscrizioneCorsoRepository {
         });
       }
 
-      if (filter.dataIscrizioneRange) {
-        const [start, end] = filter.dataIscrizioneRange;
+      if (filter.inizioAnnoScolasticoRange) {
+        const [start, end] = filter.inizioAnnoScolasticoRange;
 
         if (start !== undefined && start !== null && start !== '') {
           whereAnd.push({
-            dataIscrizione: {
+            inizioAnnoScolastico: {
               [Op.gte]: start,
             },
           });
@@ -289,7 +289,57 @@ class IscrizioneCorsoRepository {
 
         if (end !== undefined && end !== null && end !== '') {
           whereAnd.push({
-            dataIscrizione: {
+            inizioAnnoScolastico: {
+              [Op.lte]: end,
+            },
+          });
+        }
+      }
+
+      if (filter.nomeAnnoScolastico) {
+        whereAnd.push(
+          SequelizeFilterUtils.ilikeIncludes(
+            'annoScolasticoFormazione',
+            'nomeAnnoScolastico',
+            filter.nomeAnnoScolastico,
+          ),
+        );
+      }
+
+      if (filter.dataInizioCicloFormazioneRange) {
+        const [start, end] = filter.dataInizioCicloFormazioneRange;
+
+        if (start !== undefined && start !== null && start !== '') {
+          whereAnd.push({
+            dataInizioCicloFormazione: {
+              [Op.gte]: start,
+            },
+          });
+        }
+
+        if (end !== undefined && end !== null && end !== '') {
+          whereAnd.push({
+            dataInizioCicloFormazione: {
+              [Op.lte]: end,
+            },
+          });
+        }
+      }
+
+      if (filter.dataFineCicloFormazioneRange) {
+        const [start, end] = filter.dataFineCicloFormazioneRange;
+
+        if (start !== undefined && start !== null && start !== '') {
+          whereAnd.push({
+            dataFineCicloFormazione: {
+              [Op.gte]: start,
+            },
+          });
+        }
+
+        if (end !== undefined && end !== null && end !== '') {
+          whereAnd.push({
+            dataFineCicloFormazione: {
               [Op.lte]: end,
             },
           });
@@ -297,31 +347,15 @@ class IscrizioneCorsoRepository {
       }
 
       if (
-        filter.attiva === true ||
-        filter.attiva === 'true' ||
-        filter.attiva === false ||
-        filter.attiva === 'false'
+        filter.attualmenteAttivo === true ||
+        filter.attualmenteAttivo === 'true' ||
+        filter.attualmenteAttivo === false ||
+        filter.attualmenteAttivo === 'false'
       ) {
         whereAnd.push({
-          attiva:
-            filter.attiva === true ||
-            filter.attiva === 'true',
-        });
-      }
-
-      if (filter.studenteIscritto) {
-        whereAnd.push({
-          ['studenteIscrittoId']: SequelizeFilterUtils.uuid(
-            filter.studenteIscritto,
-          ),
-        });
-      }
-
-      if (filter.corsoIscrizione) {
-        whereAnd.push({
-          ['corsoIscrizioneId']: SequelizeFilterUtils.uuid(
-            filter.corsoIscrizione,
-          ),
+          attualmenteAttivo:
+            filter.attualmenteAttivo === true ||
+            filter.attualmenteAttivo === 'true',
         });
       }
 
@@ -359,7 +393,7 @@ class IscrizioneCorsoRepository {
     let {
       rows,
       count,
-    } = await options.database.iscrizioneCorso.findAndCountAll({
+    } = await options.database.annoScolasticoFormazione.findAndCountAll({
       where,
       include,
       limit: limit ? Number(limit) : undefined,
@@ -393,25 +427,25 @@ class IscrizioneCorsoRepository {
       whereAnd.push({
         [Op.or]: [
           { ['id']: SequelizeFilterUtils.uuid(query) },
-
+          { inizioAnnoScolastico: query },
         ],
       });
     }
 
     const where = { [Op.and]: whereAnd };
 
-    const records = await options.database.iscrizioneCorso.findAll(
+    const records = await options.database.annoScolasticoFormazione.findAll(
       {
-        attributes: ['id', 'id'],
+        attributes: ['id', 'inizioAnnoScolastico'],
         where,
         limit: limit ? Number(limit) : undefined,
-        order: [['id', 'ASC']],
+        order: [['inizioAnnoScolastico', 'ASC']],
       },
     );
 
     return records.map((record) => ({
       id: record.id,
-      label: record.id,
+      label: record.inizioAnnoScolastico,
     }));
   }
 
@@ -426,13 +460,14 @@ class IscrizioneCorsoRepository {
     if (data) {
       values = {
         ...record.get({ plain: true }),
-
+        amministratoriCorsiIds: data.amministratoriCorsi,
+        studentiImmatricolatiIds: data.studentiImmatricolati,
       };
     }
 
     await AuditLogRepository.log(
       {
-        entityName: 'iscrizioneCorso',
+        entityName: 'annoScolasticoFormazione',
         entityId: record.id,
         action,
         values,
@@ -467,10 +502,20 @@ class IscrizioneCorsoRepository {
       options,
     );
 
-    output.studenteIscritto = UserRepository.cleanupForRelationships(output.studenteIscritto);
+    output.amministratoriCorsi = await record.getAmministratoriCorsi({
+      transaction,
+    });
+
+    output.amministratoriCorsi = UserRepository.cleanupForRelationships(output.amministratoriCorsi);
+
+    output.studentiImmatricolati = await record.getStudentiImmatricolati({
+      transaction,
+    });
+
+    output.studentiImmatricolati = UserRepository.cleanupForRelationships(output.studentiImmatricolati);
 
     return output;
   }
 }
 
-export default IscrizioneCorsoRepository;
+export default AnnoScolasticoFormazioneRepository;

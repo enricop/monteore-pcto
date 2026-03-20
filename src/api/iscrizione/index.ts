@@ -1,0 +1,30 @@
+export default (app) => {
+  app.post(
+    `/tenant/:tenantId/iscrizione`,
+    require('./iscrizioneCreate').default,
+  );
+  app.put(
+    `/tenant/:tenantId/iscrizione/:id`,
+    require('./iscrizioneUpdate').default,
+  );
+  app.post(
+    `/tenant/:tenantId/iscrizione/import`,
+    require('./iscrizioneImport').default,
+  );
+  app.delete(
+    `/tenant/:tenantId/iscrizione`,
+    require('./iscrizioneDestroy').default,
+  );
+  app.get(
+    `/tenant/:tenantId/iscrizione/autocomplete`,
+    require('./iscrizioneAutocomplete').default,
+  );
+  app.get(
+    `/tenant/:tenantId/iscrizione`,
+    require('./iscrizioneList').default,
+  );
+  app.get(
+    `/tenant/:tenantId/iscrizione/:id`,
+    require('./iscrizioneFind').default,
+  );
+};

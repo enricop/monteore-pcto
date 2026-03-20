@@ -1,15 +1,15 @@
 import PermissionChecker from '../../services/user/permissionChecker';
 import ApiResponseHandler from '../apiResponseHandler';
 import Permissions from '../../security/permissions';
-import IscrizioneCorsoService from '../../services/iscrizioneCorsoService';
+import IscrizioneService from '../../services/iscrizioneService';
 
 export default async (req, res, next) => {
   try {
     new PermissionChecker(req).validateHas(
-      Permissions.values.iscrizioneCorsoAutocomplete,
+      Permissions.values.iscrizioneAutocomplete,
     );
 
-    const payload = await new IscrizioneCorsoService(
+    const payload = await new IscrizioneService(
       req,
     ).findAllAutocomplete(req.query.query, req.query.limit);
 

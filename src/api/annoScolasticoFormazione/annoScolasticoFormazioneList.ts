@@ -1,19 +1,17 @@
 import PermissionChecker from '../../services/user/permissionChecker';
 import ApiResponseHandler from '../apiResponseHandler';
 import Permissions from '../../security/permissions';
-import AnnoFormazioneScuolaLavoroService from '../../services/annoFormazioneScuolaLavoroService';
+import AnnoScolasticoFormazioneService from '../../services/annoScolasticoFormazioneService';
 
 export default async (req, res, next) => {
   try {
     new PermissionChecker(req).validateHas(
-      Permissions.values.annoFormazioneScuolaLavoroDestroy,
+      Permissions.values.annoScolasticoFormazioneRead,
     );
 
-    await new AnnoFormazioneScuolaLavoroService(req).destroyAll(
-      req.query.ids,
-    );
-
-    const payload = true;
+    const payload = await new AnnoScolasticoFormazioneService(
+      req,
+    ).findAndCountAll(req.query);
 
     await ApiResponseHandler.success(req, res, payload);
   } catch (error) {

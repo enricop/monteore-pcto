@@ -9,7 +9,7 @@ export default function (sequelize) {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
-      nome: {
+      nomeCorso: {
         type: DataTypes.TEXT,
         allowNull: false,
         validate: {
@@ -23,7 +23,7 @@ export default function (sequelize) {
           min: 1,
         }
       },
-      attivo: {
+      attualmenteAttivo: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false,
@@ -47,7 +47,7 @@ export default function (sequelize) {
         },
         {
           unique: true,
-          fields: ['nome', 'tenantId'],
+          fields: ['nomeCorso', 'tenantId'],
           where: {
             deletedAt: null,
           },
@@ -59,8 +59,8 @@ export default function (sequelize) {
   );
 
   corsoFormazione.associate = (models) => {
-    models.corsoFormazione.belongsTo(models.annoFormazioneScuolaLavoro, {
-      as: 'annoFormazione',
+    models.corsoFormazione.belongsTo(models.annoScolasticoFormazione, {
+      as: 'annoScolastico',
       constraints: false,
       foreignKey: {
         allowNull: false,

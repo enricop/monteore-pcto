@@ -1,16 +1,16 @@
 import PermissionChecker from '../../services/user/permissionChecker';
 import ApiResponseHandler from '../apiResponseHandler';
 import Permissions from '../../security/permissions';
-import AnnoFormazioneScuolaLavoroService from '../../services/annoFormazioneScuolaLavoroService';
+import IscrizioneService from '../../services/iscrizioneService';
 
 export default async (req, res, next) => {
   try {
     new PermissionChecker(req).validateHas(
-      Permissions.values.annoFormazioneScuolaLavoroCreate,
+      Permissions.values.iscrizioneRead,
     );
 
-    const payload = await new AnnoFormazioneScuolaLavoroService(req).create(
-      req.body.data,
+    const payload = await new IscrizioneService(req).findById(
+      req.params.id,
     );
 
     await ApiResponseHandler.success(req, res, payload);

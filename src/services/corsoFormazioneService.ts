@@ -2,7 +2,7 @@ import Error400 from '../errors/Error400';
 import SequelizeRepository from '../database/repositories/sequelizeRepository';
 import { IServiceOptions } from './IServiceOptions';
 import CorsoFormazioneRepository from '../database/repositories/corsoFormazioneRepository';
-import AnnoFormazioneScuolaLavoroRepository from '../database/repositories/annoFormazioneScuolaLavoroRepository';
+import AnnoScolasticoFormazioneRepository from '../database/repositories/annoScolasticoFormazioneRepository';
 
 export default class CorsoFormazioneService {
   options: IServiceOptions;
@@ -17,7 +17,7 @@ export default class CorsoFormazioneService {
     );
 
     try {
-      data.annoFormazione = await AnnoFormazioneScuolaLavoroRepository.filterIdInTenant(data.annoFormazione, { ...this.options, transaction });
+      data.annoScolastico = await AnnoScolasticoFormazioneRepository.filterIdInTenant(data.annoScolastico, { ...this.options, transaction });
 
       const record = await CorsoFormazioneRepository.create(data, {
         ...this.options,
@@ -50,7 +50,7 @@ export default class CorsoFormazioneService {
     );
 
     try {
-      data.annoFormazione = await AnnoFormazioneScuolaLavoroRepository.filterIdInTenant(data.annoFormazione, { ...this.options, transaction });
+      data.annoScolastico = await AnnoScolasticoFormazioneRepository.filterIdInTenant(data.annoScolastico, { ...this.options, transaction });
 
       const record = await CorsoFormazioneRepository.update(
         id,

@@ -1,49 +1,54 @@
 import { DataTypes } from 'sequelize';import moment from 'moment';
 
 export default function (sequelize) {
-  const annoFormazioneScuolaLavoro = sequelize.define(
-    'annoFormazioneScuolaLavoro',
+  const annoScolasticoFormazione = sequelize.define(
+    'annoScolasticoFormazione',
     {
       id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
-      numeroAnno: {
+      inizioAnnoScolastico: {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
 
         }
       },
-      nomeAnno: {
-        type: DataTypes.TEXT,
+      nomeAnnoScolastico: {
+        type: DataTypes.STRING(8),
+        allowNull: false,
+        validate: {
+          len: [4, 8],
+          notEmpty: true,
+        }
       },
-      inizioCiclo: {
+      dataInizioCicloFormazione: {
         type: DataTypes.DATEONLY,
         get: function() {
           // @ts-ignore
-          return this.getDataValue('inizioCiclo')
+          return this.getDataValue('dataInizioCicloFormazione')
             ? moment
                 // @ts-ignore
-                .utc(this.getDataValue('inizioCiclo'))
+                .utc(this.getDataValue('dataInizioCicloFormazione'))
                 .format('YYYY-MM-DD')
             : null;
         },
       },
-      fineCiclo: {
+      dataFineCicloFormazione: {
         type: DataTypes.DATEONLY,
         get: function() {
           // @ts-ignore
-          return this.getDataValue('fineCiclo')
+          return this.getDataValue('dataFineCicloFormazione')
             ? moment
                 // @ts-ignore
-                .utc(this.getDataValue('fineCiclo'))
+                .utc(this.getDataValue('dataFineCicloFormazione'))
                 .format('YYYY-MM-DD')
             : null;
         },
       },
-      attivo: {
+      attualmenteAttivo: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false,
@@ -67,7 +72,14 @@ export default function (sequelize) {
         },
         {
           unique: true,
-          fields: ['numeroAnno', 'tenantId'],
+          fields: ['inizioAnnoScolastico', 'tenantId'],
+          where: {
+            deletedAt: null,
+          },
+        },
+        {
+          unique: true,
+          fields: ['nomeAnnoScolastico', 'tenantId'],
           where: {
             deletedAt: null,
           },
@@ -78,36 +90,36 @@ export default function (sequelize) {
     },
   );
 
-  annoFormazioneScuolaLavoro.associate = (models) => {
-    models.annoFormazioneScuolaLavoro.belongsToMany(models.user, {
-      as: 'amministratoriCorsiFormazione',
+  annoScolasticoFormazione.associate = (models) => {
+    models.annoScolasticoFormazione.belongsToMany(models.user, {
+      as: 'amministratoriCorsi',
       constraints: false,
-      through: 'annoFormazioneScuolaLavoroAmministratoriCorsiFormazioneUser',
+      through: 'annoScolasticoFormazioneAmministratoriCorsiUser',
     });
 
-    models.annoFormazioneScuolaLavoro.belongsToMany(models.user, {
+    models.annoScolasticoFormazione.belongsToMany(models.user, {
       as: 'studentiImmatricolati',
       constraints: false,
-      through: 'annoFormazioneScuolaLavoroStudentiImmatricolatiUser',
+      through: 'annoScolasticoFormazioneStudentiImmatricolatiUser',
     });
 
 
     
-    models.annoFormazioneScuolaLavoro.belongsTo(models.tenant, {
+    models.annoScolasticoFormazione.belongsTo(models.tenant, {
       as: 'tenant',
       foreignKey: {
         allowNull: false,
       },
     });
 
-    models.annoFormazioneScuolaLavoro.belongsTo(models.user, {
+    models.annoScolasticoFormazione.belongsTo(models.user, {
       as: 'createdBy',
     });
 
-    models.annoFormazioneScuolaLavoro.belongsTo(models.user, {
+    models.annoScolasticoFormazione.belongsTo(models.user, {
       as: 'updatedBy',
     });
   };
 
-  return annoFormazioneScuolaLavoro;
+  return annoScolasticoFormazione;
 }

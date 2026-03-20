@@ -1,8 +1,8 @@
 import { DataTypes } from 'sequelize';
 
 export default function (sequelize) {
-  const iscrizioneCorso = sequelize.define(
-    'iscrizioneCorso',
+  const iscrizione = sequelize.define(
+    'iscrizione',
     {
       id: {
         type: DataTypes.UUID,
@@ -12,7 +12,7 @@ export default function (sequelize) {
       dataIscrizione: {
         type: DataTypes.DATE,
       },
-      attiva: {
+      attualmenteAttiva: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false,
@@ -41,17 +41,17 @@ export default function (sequelize) {
     },
   );
 
-  iscrizioneCorso.associate = (models) => {
-    models.iscrizioneCorso.belongsTo(models.user, {
-      as: 'studenteIscritto',
+  iscrizione.associate = (models) => {
+    models.iscrizione.belongsTo(models.user, {
+      as: 'studente',
       constraints: false,
       foreignKey: {
         allowNull: false,
       },
     });
 
-    models.iscrizioneCorso.belongsTo(models.corsoFormazione, {
-      as: 'corsoIscrizione',
+    models.iscrizione.belongsTo(models.corsoFormazione, {
+      as: 'corso',
       constraints: false,
       foreignKey: {
         allowNull: false,
@@ -60,21 +60,21 @@ export default function (sequelize) {
 
 
     
-    models.iscrizioneCorso.belongsTo(models.tenant, {
+    models.iscrizione.belongsTo(models.tenant, {
       as: 'tenant',
       foreignKey: {
         allowNull: false,
       },
     });
 
-    models.iscrizioneCorso.belongsTo(models.user, {
+    models.iscrizione.belongsTo(models.user, {
       as: 'createdBy',
     });
 
-    models.iscrizioneCorso.belongsTo(models.user, {
+    models.iscrizione.belongsTo(models.user, {
       as: 'updatedBy',
     });
   };
 
-  return iscrizioneCorso;
+  return iscrizione;
 }

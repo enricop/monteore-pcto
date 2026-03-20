@@ -1,17 +1,20 @@
 import PermissionChecker from '../../services/user/permissionChecker';
 import ApiResponseHandler from '../apiResponseHandler';
 import Permissions from '../../security/permissions';
-import AnnoFormazioneScuolaLavoroService from '../../services/annoFormazioneScuolaLavoroService';
+import IscrizioneService from '../../services/iscrizioneService';
 
 export default async (req, res, next) => {
   try {
     new PermissionChecker(req).validateHas(
-      Permissions.values.annoFormazioneScuolaLavoroAutocomplete,
+      Permissions.values.iscrizioneImport,
     );
 
-    const payload = await new AnnoFormazioneScuolaLavoroService(
-      req,
-    ).findAllAutocomplete(req.query.query, req.query.limit);
+    await new IscrizioneService(req).import(
+      req.body.data,
+      req.body.importHash,
+    );
+
+    const payload = true;
 
     await ApiResponseHandler.success(req, res, payload);
   } catch (error) {
