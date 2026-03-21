@@ -5,6 +5,9 @@ import assert from 'assert';
 import Error400 from '../../errors/Error400';
 import Plans from '../../security/plans';
 import { IServiceOptions } from '../IServiceOptions';
+import EmailSender from '../../services/emailSender';
+
+const SEND_DELETION_EMAIL = true;
 
 /**
  * Handles removing the permissions of the users.
@@ -13,6 +16,7 @@ export default class UserDestroyer {
   options: IServiceOptions;
   transaction;
   data;
+  emailsToAlert: Array<any> = [];
 
   constructor(options) {
     this.options = options;
@@ -27,6 +31,18 @@ export default class UserDestroyer {
     await this._validate();
 
     try {
+      this.emailsToAlert = [];
+
+      this._ids.forEach(async userid => {
+        const user = await UserRepository.findByIdWithoutAvatar(
+          userid,
+          this.options,
+        );
+        this.emailsToAlert.push(
+          user.email,
+        );
+      });
+
       this.transaction = await SequelizeRepository.createTransaction(
         this.options.database,
       );
@@ -35,9 +51,17 @@ export default class UserDestroyer {
         this._ids.map((id) => this._destroy(id)),
       );
 
-      return SequelizeRepository.commitTransaction(
+      const res = SequelizeRepository.commitTransaction(
         this.transaction,
       );
+
+      /*
+      if (SEND_DELETION_EMAIL) {
+        await this.sendAllDeletionEmails();
+      }
+      */
+
+      return res;
     } catch (error) {
       await SequelizeRepository.rollbackTransaction(
         this.transaction,
@@ -135,5 +159,20 @@ export default class UserDestroyer {
         'user.errors.destroyingHimself',
       );
     }
+  }
+
+  /**
+   * Sends all deletion emails.
+   */
+  async sendAllDeletionEmails() {
+    return Promise.all(
+      this.emailsToAlert.map((emailToAlert) => {
+
+        return new EmailSender(
+          EmailSender.TEMPLATES.DELETION,
+          { placeholder: null }
+        ).sendTo(emailToAlert.email);
+      }),
+    );
   }
 }

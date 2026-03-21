@@ -6,7 +6,7 @@ import { IServiceOptions } from '../IServiceOptions';
 /**
  * Flags if should send invitation emails for imported users.
  */
-const SEND_INVITATION_EMAIL = false;
+const SEND_INVITATION_EMAIL = true;
 
 export default class UserImporter {
   options: IServiceOptions;

@@ -34,6 +34,7 @@ export default class EmailSender {
     return {
       EMAIL_ADDRESS_VERIFICATION: "emailAddressVerification",
       INVITATION: "invitation",
+      DELETION: "deletion",
       PASSWORD_RESET: "passwordReset",
     };
   }
