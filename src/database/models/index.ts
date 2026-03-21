@@ -15,7 +15,7 @@ function models() {
 
   let sequelize = null;
 
-  if (getConfig().ON_HEROKU) {
+  if (getConfig().ON_HEROKU === 1) {
     sequelize = new (<any>Sequelize)(
       getConfig().DATABASE_URL,
       {
