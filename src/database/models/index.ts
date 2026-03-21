@@ -16,10 +16,12 @@ function models() {
   let sequelize = null;
 
   if (getConfig().ON_HEROKU === 1) {
+	
+	console.info("Using heroku database");
+
     sequelize = new (<any>Sequelize)(
       getConfig().DATABASE_URL,
       {
-        host: getConfig().DATABASE_HOST,
         dialect: getConfig().DATABASE_DIALECT,
         logging:
           getConfig().DATABASE_LOGGING === 'true'
@@ -34,6 +36,9 @@ function models() {
       },
     );
   } else {
+
+	console.info("Using local database");
+
     sequelize = new (<any>Sequelize)(
       getConfig().DATABASE_DATABASE,
       getConfig().DATABASE_USERNAME,
