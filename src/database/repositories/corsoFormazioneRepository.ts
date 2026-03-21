@@ -367,7 +367,7 @@ class CorsoFormazioneRepository {
         whereAnd.push(
           SequelizeFilterUtils.iloveExact(
             'annoScolastico',
-            'nomeAnnoScolastico',
+            'inizioAnnoScolastico',
             filter.annoFormazione,
           ),
         );
