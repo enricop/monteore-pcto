@@ -35,9 +35,11 @@
     "pg": "^8.20.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.8",
+    "sequelize-cli": "^6.6.5",
     "sqlite": "^4.2.1",
     "stripe": "^8.222.0",
     "swagger-ui-dist": "^3.52.5",
+    "ts-node": "^9.1.1",
     "typescript": "^5.9.3"
   },
   "private": true,
@@ -47,8 +49,6 @@
     "cross-env": "^7.0.3",
     "eslint": "^10.0.3",
     "mocha": "^8.4.0",
-    "node-mocks-http": "^1.17.2",
-    "sequelize-cli": "^6.6.5",
-    "ts-node": "^9.1.1"
+    "node-mocks-http": "^1.17.2"
   }
 }
