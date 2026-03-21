@@ -16,8 +16,7 @@ export default class UserDestroyer {
   options: IServiceOptions;
   transaction;
   data;
-  emailsToAlert: Array<any> = [];
-
+  
   constructor(options) {
     this.options = options;
   }
@@ -31,16 +30,14 @@ export default class UserDestroyer {
     await this._validate();
 
     try {
-      this.emailsToAlert = [];
+      let emailsToAlert: Array<string> = [];
 
       this._ids.forEach(async userid => {
         const user = await UserRepository.findByIdWithoutAvatar(
           userid,
           this.options,
         );
-        this.emailsToAlert.push(
-          user.email,
-        );
+        emailsToAlert.push(user.email);
       });
 
       this.transaction = await SequelizeRepository.createTransaction(
@@ -55,11 +52,9 @@ export default class UserDestroyer {
         this.transaction,
       );
 
-      /*
       if (SEND_DELETION_EMAIL) {
-        await this.sendAllDeletionEmails();
+        await this.sendAllDeletionEmails(emailsToAlert);
       }
-      */
 
       return res;
     } catch (error) {
@@ -164,14 +159,14 @@ export default class UserDestroyer {
   /**
    * Sends all deletion emails.
    */
-  async sendAllDeletionEmails() {
+  async sendAllDeletionEmails(emailsToAlert: Array<string>) {
     return Promise.all(
-      this.emailsToAlert.map((emailToAlert) => {
+      emailsToAlert.map((emailToAlert) => {
 
         return new EmailSender(
           EmailSender.TEMPLATES.DELETION,
           { placeholder: null }
-        ).sendTo(emailToAlert.email);
+        ).sendTo(emailToAlert);
       }),
     );
   }

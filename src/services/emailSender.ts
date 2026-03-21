@@ -36,6 +36,7 @@ export default class EmailSender {
       INVITATION: "invitation",
       DELETION: "deletion",
       PASSWORD_RESET: "passwordReset",
+      STUDENT_SUBSCRIPTION: "subscription",
     };
   }
 

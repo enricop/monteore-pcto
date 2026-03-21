@@ -4,6 +4,9 @@ import { IServiceOptions } from './IServiceOptions';
 import IscrizioneRepository from '../database/repositories/iscrizioneRepository';
 import CorsoFormazioneRepository from '../database/repositories/corsoFormazioneRepository';
 import UserRepository from '../database/repositories/userRepository';
+import EmailSender from '../services/emailSender';
+
+const SEND_SUBSCRIPTION_EMAIL = true;
 
 export default class IscrizioneService {
   options: IServiceOptions;
@@ -21,6 +24,18 @@ export default class IscrizioneService {
       data.studente = await UserRepository.filterIdInTenant(data.studente, { ...this.options, transaction });
       data.corso = await CorsoFormazioneRepository.filterIdInTenant(data.corso, { ...this.options, transaction });
 
+      let emailsToAlert: Array<string> = [];
+      const user = await UserRepository.findByIdWithoutAvatar(
+        data.studente,
+        this.options,
+      );
+      emailsToAlert.push(user.email);
+      const course = await CorsoFormazioneRepository.findById(
+        data.corso,
+        this.options
+      );
+
+
       const record = await IscrizioneRepository.create(data, {
         ...this.options,
         transaction,
@@ -29,6 +44,10 @@ export default class IscrizioneService {
       await SequelizeRepository.commitTransaction(
         transaction,
       );
+
+      if (SEND_SUBSCRIPTION_EMAIL) {
+        await this.sendAllSubscriptionEmails(emailsToAlert, course.nomeCorso);
+      }
 
       return record;
     } catch (error) {
@@ -159,5 +178,20 @@ export default class IscrizioneService {
     );
 
     return count > 0;
+  }
+
+  /**
+   * Sends all deletion emails.
+   */
+  async sendAllSubscriptionEmails(emailsToAlert: Array<string>, courseName) {
+    return Promise.all(
+      emailsToAlert.map((emailToAlert) => {
+
+        return new EmailSender(
+          EmailSender.TEMPLATES.STUDENT_SUBSCRIPTION,
+          { courseName: courseName }
+        ).sendTo(emailToAlert);
+      }),
+    );
   }
 }
