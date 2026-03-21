@@ -10,19 +10,24 @@ const highlight = require('cli-highlight').highlight;
 
 const basename = path.basename(module.filename);
 
-function models() {
+function models(isHeroku : boolean = false) {
   const database = {} as any;
 
   let sequelize = null;
 
-  if (getConfig().ON_HEROKU === 1) {
+  if (Number(getConfig().ON_HEROKU) === 1 || isHeroku) {
 	
-	console.info("Using heroku database");
+	  console.info("Using heroku database");
 
     sequelize = new (<any>Sequelize)(
       getConfig().DATABASE_URL,
       {
         dialect: getConfig().DATABASE_DIALECT,
+        dialectOptions: {
+            ssl: {
+                rejectUnauthorized: false
+            }
+        },
         logging:
           getConfig().DATABASE_LOGGING === 'true'
             ? (log) =>
@@ -35,9 +40,10 @@ function models() {
             : false,
       },
     );
+
   } else {
 
-	console.info("Using local database");
+	  console.info("Using local database");
 
     sequelize = new (<any>Sequelize)(
       getConfig().DATABASE_DATABASE,

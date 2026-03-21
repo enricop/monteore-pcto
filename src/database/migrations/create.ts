@@ -6,7 +6,7 @@ require('dotenv').config();
 
 import models from '../models';
 
-models()
+models(Number(process.env.ON_HEROKU) === 1)
   .sequelize.sync()
   .then(() => {
     console.log('OK');
