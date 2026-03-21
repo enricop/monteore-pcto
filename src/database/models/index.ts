@@ -13,25 +13,47 @@ const basename = path.basename(module.filename);
 function models() {
   const database = {} as any;
 
-  let sequelize = new (<any>Sequelize)(
-    getConfig().DATABASE_DATABASE,
-    getConfig().DATABASE_USERNAME,
-    getConfig().DATABASE_PASSWORD,
-    {
-      host: getConfig().DATABASE_HOST,
-      dialect: getConfig().DATABASE_DIALECT,
-      logging:
-        getConfig().DATABASE_LOGGING === 'true'
-          ? (log) =>
-              console.log(
-                highlight(log, {
-                  language: 'sql',
-                  ignoreIllegals: true,
-                }),
-              )
-          : false,
-    },
-  );
+  let sequelize = null;
+
+  if (getConfig().ON_HEROKU) {
+    sequelize = new (<any>Sequelize)(
+      getConfig().DATABASE_URL,
+      {
+        host: getConfig().DATABASE_HOST,
+        dialect: getConfig().DATABASE_DIALECT,
+        logging:
+          getConfig().DATABASE_LOGGING === 'true'
+            ? (log) =>
+                console.log(
+                  highlight(log, {
+                    language: 'sql',
+                    ignoreIllegals: true,
+                  }),
+                )
+            : false,
+      },
+    );
+  } else {
+    sequelize = new (<any>Sequelize)(
+      getConfig().DATABASE_DATABASE,
+      getConfig().DATABASE_USERNAME,
+      getConfig().DATABASE_PASSWORD,
+      {
+        host: getConfig().DATABASE_HOST,
+        dialect: getConfig().DATABASE_DIALECT,
+        logging:
+          getConfig().DATABASE_LOGGING === 'true'
+            ? (log) =>
+                console.log(
+                  highlight(log, {
+                    language: 'sql',
+                    ignoreIllegals: true,
+                  }),
+                )
+            : false,
+      },
+    );
+  }
 
   fs.readdirSync(__dirname)
     .filter(function (file) {
