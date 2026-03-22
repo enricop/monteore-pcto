@@ -5,10 +5,6 @@ export const tenantSubdomain = {
     const frontendUrlWithSubdomain = getConfig()
       .FRONTEND_URL_WITH_SUBDOMAIN;
 
-    if (Number(getConfig().ON_HEROKU) === 1) {
-      return getConfig().BACKEND_URL;
-    }
-
     if (
       getConfig().TENANT_MODE !== 'multi-with-subdomain' ||
       !frontendUrlWithSubdomain ||
