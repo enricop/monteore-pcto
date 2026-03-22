@@ -428,7 +428,7 @@ class AuthService {
       );
       link = `${tenantSubdomain.frontendUrl(
         tenant,
-      )}/auth/verify-email?token=${token}`;
+      )}/auth/verify-email.html?token=${token}`;
     } catch (error) {
       console.error(error);
       throw new Error400(
