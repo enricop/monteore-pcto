@@ -473,7 +473,7 @@ class AuthService {
 
       link = `${tenantSubdomain.frontendUrl(
         tenant,
-      )}/auth/password-reset?token=${token}`;
+      )}/auth/password-reset.html?token=${token}`;
     } catch (error) {
       console.error(error);
       throw new Error400(
